@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.PhoneHomeGoodsMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.PhoneHomeGoods">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="tree_code" jdbcType="VARCHAR" property="treeCode" />
+    <result column="order_no" jdbcType="INTEGER" property="orderNo" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, category_id, goods_id, tree_code, order_no, status, created_time, created_by, 
+    updated_time, update_by, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from phone_home_goods
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from phone_home_goods
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.PhoneHomeGoods">
+    insert into phone_home_goods (uuid, category_id, goods_id, 
+      tree_code, order_no, status, 
+      created_time, created_by, updated_time, 
+      update_by, version)
+    values (#{uuid,jdbcType=VARCHAR}, #{categoryId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{treeCode,jdbcType=VARCHAR}, #{orderNo,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{version,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.PhoneHomeGoods">
+    insert into phone_home_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="treeCode != null">
+        tree_code,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="treeCode != null">
+        #{treeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.PhoneHomeGoods">
+    update phone_home_goods
+    <set>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="treeCode != null">
+        tree_code = #{treeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.PhoneHomeGoods">
+    update phone_home_goods
+    set category_id = #{categoryId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      tree_code = #{treeCode,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=DECIMAL}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="uuid != null">
+      and uuid = #{uuid,jdbcType=VARCHAR}
+    </if>
+    <if test="categoryId != null">
+      and category_id = #{categoryId,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsId != null">
+      and goods_id = #{goodsId,jdbcType=VARCHAR}
+    </if>
+    <if test="treeCode != null">
+      and tree_code = #{treeCode,jdbcType=VARCHAR}
+    </if>
+    <if test="orderNo != null">
+      and order_no = #{orderNo,jdbcType=INTEGER}
+    </if>
+    <if test="status != null">
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateBy != null">
+      and update_by = #{updateBy,jdbcType=VARCHAR}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.PhoneHomeGoods" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from phone_home_goods
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

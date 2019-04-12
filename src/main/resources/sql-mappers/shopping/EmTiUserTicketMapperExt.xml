@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmTiUserTicketMapperExt">
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+
+   <select id="ticketList" parameterType="com.shopping.model.jsonbean.TicketJsonBean" resultType="com.shopping.model.jsonbean.TicketJsonBean">
+       select
+          ut.user_id as userId,
+          ut.ticket_id as ticketId,
+          ut.efstart_time as efstartTime,
+          ut.efend_time as efendTime,
+          ut.is_use as isUse,
+          tt.ticket_name as ticketName,
+          tt.ticket_type as ticketType,
+          tt.cost as cost,
+          tt.use_scope as useScope,
+          tt.use_condition as useCondition,
+          tt.use_condition_value as useConditionValue,
+          ut.id as userTicketId
+       from em_ti_user_ticket ut left join em_ti_ticket tt on ut.ticket_id = tt.ticket_id
+       where ut.user_id = #{userId, jdbcType=VARCHAR}
+       <if test="isUse != null and isUse != ''">
+           and ut.is_use = #{isUse, jdbcType=INTEGER}
+       </if>
+   </select>
+
+    <select id="selectCategoryNameByticketId" parameterType="java.lang.String" resultType="java.lang.String">
+        select category_Name From em_ti_ticket_catetgory where ticket_id = #{ticketId,jdbcType = VARCHAR}
+    </select>
+    
+    <select id="selectTickUserId" parameterType="java.lang.String" resultType="java.lang.String">
+        select  id from em_ti_user_ticket where order_no =
+         (select order_no from em_od_orders where order_id = #{orderId,jdbcType = VARCHAR})
+
+    </select>
+</mapper>

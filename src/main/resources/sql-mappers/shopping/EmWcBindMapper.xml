@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmWcBindMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmWcBind">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="source_openid" jdbcType="VARCHAR" property="sourceOpenid" />
+    <result column="current_openId" jdbcType="VARCHAR" property="currentOpenid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, source_openid, current_openId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_wc_bind
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_wc_bind
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmWcBind">
+    insert into em_wc_bind (uuid, source_openid, current_openId
+      )
+    values (#{uuid,jdbcType=VARCHAR}, #{sourceOpenid,jdbcType=VARCHAR}, #{currentOpenid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmWcBind">
+    insert into em_wc_bind
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="sourceOpenid != null">
+        source_openid,
+      </if>
+      <if test="currentOpenid != null">
+        current_openId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOpenid != null">
+        #{sourceOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="currentOpenid != null">
+        #{currentOpenid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmWcBind">
+    update em_wc_bind
+    <set>
+      <if test="sourceOpenid != null">
+        source_openid = #{sourceOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="currentOpenid != null">
+        current_openId = #{currentOpenid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmWcBind">
+    update em_wc_bind
+    set source_openid = #{sourceOpenid,jdbcType=VARCHAR},
+      current_openId = #{currentOpenid,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="uuid != null">
+      and uuid = #{uuid,jdbcType=VARCHAR}
+    </if>
+    <if test="sourceOpenid != null">
+      and source_openid = #{sourceOpenid,jdbcType=VARCHAR}
+    </if>
+    <if test="currentOpenid != null">
+      and current_openId = #{currentOpenid,jdbcType=VARCHAR}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmWcBind" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_wc_bind
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

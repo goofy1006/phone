@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmCmContractGoodsMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmCmContractGoods">
+    <id column="contract_goods_id" jdbcType="VARCHAR" property="contractGoodsId" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="catgory_id" jdbcType="VARCHAR" property="catgoryId" />
+    <result column="contract_goods_code" jdbcType="VARCHAR" property="contractGoodsCode" />
+    <result column="contract_goods_name" jdbcType="VARCHAR" property="contractGoodsName" />
+    <result column="contract_price" jdbcType="DECIMAL" property="contractPrice" />
+    <result column="special_price" jdbcType="DECIMAL" property="specialPrice" />
+    <result column="min_package" jdbcType="DECIMAL" property="minPackage" />
+    <result column="sales_account" jdbcType="DECIMAL" property="salesAccount" />
+    <result column="contract_score" jdbcType="DECIMAL" property="contractScore" />
+    <result column="contracted" jdbcType="DECIMAL" property="contracted" />
+    <result column="up_act" jdbcType="DECIMAL" property="upAct" />
+    <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.shopping.model.EmCmContractGoods">
+    <result column="attr_name_value" jdbcType="LONGVARCHAR" property="attrNameValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    contract_goods_id, goods_id, catgory_id, contract_goods_code, contract_goods_name, 
+    contract_price, special_price, min_package, sales_account, contract_score, contracted, 
+    up_act, is_inactive, created_by, created_time, updated_by, updated_time, version
+  </sql>
+  <sql id="Blob_Column_List">
+    attr_name_value
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from em_cm_contract_goods
+    where contract_goods_id = #{contractGoodsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_cm_contract_goods
+    where contract_goods_id = #{contractGoodsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmCmContractGoods">
+    insert into em_cm_contract_goods (contract_goods_id, goods_id, catgory_id, 
+      contract_goods_code, contract_goods_name, contract_price, 
+      special_price, min_package, sales_account, 
+      contract_score, contracted, up_act, 
+      is_inactive, created_by, created_time, 
+      updated_by, updated_time, version, 
+      attr_name_value)
+    values (#{contractGoodsId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, #{catgoryId,jdbcType=VARCHAR}, 
+      #{contractGoodsCode,jdbcType=VARCHAR}, #{contractGoodsName,jdbcType=VARCHAR}, #{contractPrice,jdbcType=DECIMAL}, 
+      #{specialPrice,jdbcType=DECIMAL}, #{minPackage,jdbcType=DECIMAL}, #{salesAccount,jdbcType=DECIMAL}, 
+      #{contractScore,jdbcType=DECIMAL}, #{contracted,jdbcType=DECIMAL}, #{upAct,jdbcType=DECIMAL}, 
+      #{isInactive,jdbcType=DECIMAL}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, #{version,jdbcType=DECIMAL}, 
+      #{attrNameValue,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmCmContractGoods">
+    insert into em_cm_contract_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractGoodsId != null">
+        contract_goods_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="catgoryId != null">
+        catgory_id,
+      </if>
+      <if test="contractGoodsCode != null">
+        contract_goods_code,
+      </if>
+      <if test="contractGoodsName != null">
+        contract_goods_name,
+      </if>
+      <if test="contractPrice != null">
+        contract_price,
+      </if>
+      <if test="specialPrice != null">
+        special_price,
+      </if>
+      <if test="minPackage != null">
+        min_package,
+      </if>
+      <if test="salesAccount != null">
+        sales_account,
+      </if>
+      <if test="contractScore != null">
+        contract_score,
+      </if>
+      <if test="contracted != null">
+        contracted,
+      </if>
+      <if test="upAct != null">
+        up_act,
+      </if>
+      <if test="isInactive != null">
+        is_inactive,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="attrNameValue != null">
+        attr_name_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractGoodsId != null">
+        #{contractGoodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="catgoryId != null">
+        #{catgoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractGoodsCode != null">
+        #{contractGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractGoodsName != null">
+        #{contractGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPrice != null">
+        #{contractPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="specialPrice != null">
+        #{specialPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="minPackage != null">
+        #{minPackage,jdbcType=DECIMAL},
+      </if>
+      <if test="salesAccount != null">
+        #{salesAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="contractScore != null">
+        #{contractScore,jdbcType=DECIMAL},
+      </if>
+      <if test="contracted != null">
+        #{contracted,jdbcType=DECIMAL},
+      </if>
+      <if test="upAct != null">
+        #{upAct,jdbcType=DECIMAL},
+      </if>
+      <if test="isInactive != null">
+        #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="attrNameValue != null">
+        #{attrNameValue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmCmContractGoods">
+    update em_cm_contract_goods
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="catgoryId != null">
+        catgory_id = #{catgoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractGoodsCode != null">
+        contract_goods_code = #{contractGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractGoodsName != null">
+        contract_goods_name = #{contractGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPrice != null">
+        contract_price = #{contractPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="specialPrice != null">
+        special_price = #{specialPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="minPackage != null">
+        min_package = #{minPackage,jdbcType=DECIMAL},
+      </if>
+      <if test="salesAccount != null">
+        sales_account = #{salesAccount,jdbcType=DECIMAL},
+      </if>
+      <if test="contractScore != null">
+        contract_score = #{contractScore,jdbcType=DECIMAL},
+      </if>
+      <if test="contracted != null">
+        contracted = #{contracted,jdbcType=DECIMAL},
+      </if>
+      <if test="upAct != null">
+        up_act = #{upAct,jdbcType=DECIMAL},
+      </if>
+      <if test="isInactive != null">
+        is_inactive = #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="attrNameValue != null">
+        attr_name_value = #{attrNameValue,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where contract_goods_id = #{contractGoodsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shopping.model.EmCmContractGoods">
+    update em_cm_contract_goods
+    set goods_id = #{goodsId,jdbcType=VARCHAR},
+      catgory_id = #{catgoryId,jdbcType=VARCHAR},
+      contract_goods_code = #{contractGoodsCode,jdbcType=VARCHAR},
+      contract_goods_name = #{contractGoodsName,jdbcType=VARCHAR},
+      contract_price = #{contractPrice,jdbcType=DECIMAL},
+      special_price = #{specialPrice,jdbcType=DECIMAL},
+      min_package = #{minPackage,jdbcType=DECIMAL},
+      sales_account = #{salesAccount,jdbcType=DECIMAL},
+      contract_score = #{contractScore,jdbcType=DECIMAL},
+      contracted = #{contracted,jdbcType=DECIMAL},
+      up_act = #{upAct,jdbcType=DECIMAL},
+      is_inactive = #{isInactive,jdbcType=DECIMAL},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=DECIMAL},
+      attr_name_value = #{attrNameValue,jdbcType=LONGVARCHAR}
+    where contract_goods_id = #{contractGoodsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmCmContractGoods">
+    update em_cm_contract_goods
+    set goods_id = #{goodsId,jdbcType=VARCHAR},
+      catgory_id = #{catgoryId,jdbcType=VARCHAR},
+      contract_goods_code = #{contractGoodsCode,jdbcType=VARCHAR},
+      contract_goods_name = #{contractGoodsName,jdbcType=VARCHAR},
+      contract_price = #{contractPrice,jdbcType=DECIMAL},
+      special_price = #{specialPrice,jdbcType=DECIMAL},
+      min_package = #{minPackage,jdbcType=DECIMAL},
+      sales_account = #{salesAccount,jdbcType=DECIMAL},
+      contract_score = #{contractScore,jdbcType=DECIMAL},
+      contracted = #{contracted,jdbcType=DECIMAL},
+      up_act = #{upAct,jdbcType=DECIMAL},
+      is_inactive = #{isInactive,jdbcType=DECIMAL},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=DECIMAL}
+    where contract_goods_id = #{contractGoodsId,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="contractGoodsId != null">
+      and contract_goods_id = #{contractGoodsId,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsId != null">
+      and goods_id = #{goodsId,jdbcType=VARCHAR}
+    </if>
+    <if test="catgoryId != null">
+      and catgory_id = #{catgoryId,jdbcType=VARCHAR}
+    </if>
+    <if test="contractGoodsCode != null">
+      and contract_goods_code = #{contractGoodsCode,jdbcType=VARCHAR}
+    </if>
+    <if test="contractGoodsName != null">
+      and contract_goods_name = #{contractGoodsName,jdbcType=VARCHAR}
+    </if>
+    <if test="contractPrice != null">
+      and contract_price = #{contractPrice,jdbcType=DECIMAL}
+    </if>
+    <if test="specialPrice != null">
+      and special_price = #{specialPrice,jdbcType=DECIMAL}
+    </if>
+    <if test="minPackage != null">
+      and min_package = #{minPackage,jdbcType=DECIMAL}
+    </if>
+    <if test="salesAccount != null">
+      and sales_account = #{salesAccount,jdbcType=DECIMAL}
+    </if>
+    <if test="contractScore != null">
+      and contract_score = #{contractScore,jdbcType=DECIMAL}
+    </if>
+    <if test="contracted != null">
+      and contracted = #{contracted,jdbcType=DECIMAL}
+    </if>
+    <if test="upAct != null">
+      and up_act = #{upAct,jdbcType=DECIMAL}
+    </if>
+    <if test="isInactive != null">
+      and is_inactive = #{isInactive,jdbcType=DECIMAL}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+    <if test="attrNameValue != null">
+      and attr_name_value = #{attrNameValue,jdbcType=LONGVARCHAR}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmCmContractGoods" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from em_cm_contract_goods
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmOdOrderDetailMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmOdOrderDetail">
+    <id column="order_detail_id" jdbcType="VARCHAR" property="orderDetailId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="count" jdbcType="DECIMAL" property="count" />
+    <result column="aut_count" jdbcType="DECIMAL" property="autCount" />
+    <result column="pulled_qty" jdbcType="DECIMAL" property="pulledQty" />
+    <result column="unit" jdbcType="DECIMAL" property="unit" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="current_id" jdbcType="VARCHAR" property="currentId" />
+    <result column="sales_price" jdbcType="DECIMAL" property="salesPrice" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="aut_amt" jdbcType="DECIMAL" property="autAmt" />
+    <result column="pulled_amt" jdbcType="DECIMAL" property="pulledAmt" />
+    <result column="audit_remark" jdbcType="DECIMAL" property="auditRemark" />
+    <result column="is_evaluated" jdbcType="DECIMAL" property="isEvaluated" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+    <result column="aftersales_state" jdbcType="INTEGER" property="aftersalesState" />
+    <result column="price_b" jdbcType="DECIMAL" property="priceB" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_detail_id, order_id, goods_id, goods_name, store_id, count, aut_count, pulled_qty, 
+    unit, remark, current_id, sales_price, amount, aut_amt, pulled_amt, audit_remark, 
+    is_evaluated, created_by, created_time, updated_by, updated_time, version, aftersales_state, 
+    price_b
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_od_order_detail
+    where order_detail_id = #{orderDetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_od_order_detail
+    where order_detail_id = #{orderDetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmOdOrderDetail">
+    insert into em_od_order_detail (order_detail_id, order_id, goods_id, 
+      goods_name, store_id, count, 
+      aut_count, pulled_qty, unit, 
+      remark, current_id, sales_price, 
+      amount, aut_amt, pulled_amt, 
+      audit_remark, is_evaluated, created_by, 
+      created_time, updated_by, updated_time, 
+      version, aftersales_state, price_b,price_a,price_c
+      )
+    values (#{orderDetailId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{storeId,jdbcType=VARCHAR}, #{count,jdbcType=DECIMAL}, 
+      #{autCount,jdbcType=DECIMAL}, #{pulledQty,jdbcType=DECIMAL}, #{unit,jdbcType=DECIMAL}, 
+      #{remark,jdbcType=VARCHAR}, #{currentId,jdbcType=VARCHAR}, #{salesPrice,jdbcType=DECIMAL}, 
+      #{amount,jdbcType=DECIMAL}, #{autAmt,jdbcType=DECIMAL}, #{pulledAmt,jdbcType=DECIMAL}, 
+      #{auditRemark,jdbcType=DECIMAL}, #{isEvaluated,jdbcType=DECIMAL}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=DECIMAL}, #{aftersalesState,jdbcType=INTEGER}, #{priceB,jdbcType=DECIMAL}, #{priceA,jdbcType=DECIMAL}, #{priceC,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmOdOrderDetail">
+    insert into em_od_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderDetailId != null">
+        order_detail_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="autCount != null">
+        aut_count,
+      </if>
+      <if test="pulledQty != null">
+        pulled_qty,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="currentId != null">
+        current_id,
+      </if>
+      <if test="salesPrice != null">
+        sales_price,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="autAmt != null">
+        aut_amt,
+      </if>
+      <if test="pulledAmt != null">
+        pulled_amt,
+      </if>
+      <if test="auditRemark != null">
+        audit_remark,
+      </if>
+      <if test="isEvaluated != null">
+        is_evaluated,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="aftersalesState != null">
+        aftersales_state,
+      </if>
+      <if test="priceB != null">
+        price_b,
+      </if>
+        <if test="priceA != null">
+            price_a,
+        </if>
+        <if test="priceC != null">
+            price_c,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderDetailId != null">
+        #{orderDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=DECIMAL},
+      </if>
+      <if test="autCount != null">
+        #{autCount,jdbcType=DECIMAL},
+      </if>
+      <if test="pulledQty != null">
+        #{pulledQty,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="currentId != null">
+        #{currentId,jdbcType=VARCHAR},
+      </if>
+      <if test="salesPrice != null">
+        #{salesPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="autAmt != null">
+        #{autAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pulledAmt != null">
+        #{pulledAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="auditRemark != null">
+        #{auditRemark,jdbcType=DECIMAL},
+      </if>
+      <if test="isEvaluated != null">
+        #{isEvaluated,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="aftersalesState != null">
+        #{aftersalesState,jdbcType=INTEGER},
+      </if>
+      <if test="priceB != null">
+        #{priceB,jdbcType=DECIMAL},
+      </if>
+      <if test="priceA != null">
+        #{priceA,jdbcType=DECIMAL},
+      </if>
+      <if test="priceC != null">
+        #{priceC,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmOdOrderDetail">
+    update em_od_order_detail
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=DECIMAL},
+      </if>
+      <if test="autCount != null">
+        aut_count = #{autCount,jdbcType=DECIMAL},
+      </if>
+      <if test="pulledQty != null">
+        pulled_qty = #{pulledQty,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="currentId != null">
+        current_id = #{currentId,jdbcType=VARCHAR},
+      </if>
+      <if test="salesPrice != null">
+        sales_price = #{salesPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="autAmt != null">
+        aut_amt = #{autAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pulledAmt != null">
+        pulled_amt = #{pulledAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="auditRemark != null">
+        audit_remark = #{auditRemark,jdbcType=DECIMAL},
+      </if>
+      <if test="isEvaluated != null">
+        is_evaluated = #{isEvaluated,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="aftersalesState != null">
+        aftersales_state = #{aftersalesState,jdbcType=INTEGER},
+      </if>
+      <if test="priceB != null">
+        price_b = #{priceB,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where order_detail_id = #{orderDetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmOdOrderDetail">
+    update em_od_order_detail
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=VARCHAR},
+      count = #{count,jdbcType=DECIMAL},
+      aut_count = #{autCount,jdbcType=DECIMAL},
+      pulled_qty = #{pulledQty,jdbcType=DECIMAL},
+      unit = #{unit,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      current_id = #{currentId,jdbcType=VARCHAR},
+      sales_price = #{salesPrice,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      aut_amt = #{autAmt,jdbcType=DECIMAL},
+      pulled_amt = #{pulledAmt,jdbcType=DECIMAL},
+      audit_remark = #{auditRemark,jdbcType=DECIMAL},
+      is_evaluated = #{isEvaluated,jdbcType=DECIMAL},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=DECIMAL},
+      aftersales_state = #{aftersalesState,jdbcType=INTEGER},
+      price_b = #{priceB,jdbcType=DECIMAL}
+    where order_detail_id = #{orderDetailId,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="orderDetailId != null">
+      and order_detail_id = #{orderDetailId,jdbcType=VARCHAR}
+    </if>
+    <if test="orderId != null">
+      and order_id = #{orderId,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsId != null">
+      and goods_id = #{goodsId,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsName != null">
+      and goods_name = #{goodsName,jdbcType=VARCHAR}
+    </if>
+    <if test="storeId != null">
+      and store_id = #{storeId,jdbcType=VARCHAR}
+    </if>
+    <if test="count != null">
+      and count = #{count,jdbcType=DECIMAL}
+    </if>
+    <if test="autCount != null">
+      and aut_count = #{autCount,jdbcType=DECIMAL}
+    </if>
+    <if test="pulledQty != null">
+      and pulled_qty = #{pulledQty,jdbcType=DECIMAL}
+    </if>
+    <if test="unit != null">
+      and unit = #{unit,jdbcType=DECIMAL}
+    </if>
+    <if test="remark != null">
+      and remark = #{remark,jdbcType=VARCHAR}
+    </if>
+    <if test="currentId != null">
+      and current_id = #{currentId,jdbcType=VARCHAR}
+    </if>
+    <if test="salesPrice != null">
+      and sales_price = #{salesPrice,jdbcType=DECIMAL}
+    </if>
+    <if test="amount != null">
+      and amount = #{amount,jdbcType=DECIMAL}
+    </if>
+    <if test="autAmt != null">
+      and aut_amt = #{autAmt,jdbcType=DECIMAL}
+    </if>
+    <if test="pulledAmt != null">
+      and pulled_amt = #{pulledAmt,jdbcType=DECIMAL}
+    </if>
+    <if test="auditRemark != null">
+      and audit_remark = #{auditRemark,jdbcType=DECIMAL}
+    </if>
+    <if test="isEvaluated != null">
+      and is_evaluated = #{isEvaluated,jdbcType=DECIMAL}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+    <if test="aftersalesState != null">
+      and aftersales_state = #{aftersalesState,jdbcType=INTEGER}
+    </if>
+    <if test="priceB != null">
+      and price_b = #{priceB,jdbcType=DECIMAL}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmOdOrderDetail" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_od_order_detail
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

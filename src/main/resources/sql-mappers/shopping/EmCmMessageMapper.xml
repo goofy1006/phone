@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmCmMessageMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmCmMessage">
+    <id column="message_id" jdbcType="VARCHAR" property="messageId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="message_title" jdbcType="VARCHAR" property="messageTitle" />
+    <result column="message_type" jdbcType="DECIMAL" property="messageType" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="read_time" jdbcType="TIMESTAMP" property="readTime" />
+    <result column="is_read" jdbcType="DECIMAL" property="isRead" />
+    <result column="message_desc" jdbcType="VARCHAR" property="messageDesc" />
+    <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    message_id, customer_id, message_title, message_type, send_time, read_time, is_read, 
+    message_desc, is_inactive, created_time, created_by, updated_time, updated_by, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_cm_message
+    where message_id = #{messageId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_cm_message
+    where message_id = #{messageId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmCmMessage">
+    insert into em_cm_message (message_id, customer_id, message_title, 
+      message_type, send_time, read_time, 
+      is_read, message_desc, is_inactive, 
+      created_time, created_by, updated_time, 
+      updated_by, version)
+    values (#{messageId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{messageTitle,jdbcType=VARCHAR}, 
+      #{messageType,jdbcType=DECIMAL}, #{sendTime,jdbcType=TIMESTAMP}, #{readTime,jdbcType=TIMESTAMP}, 
+      #{isRead,jdbcType=DECIMAL}, #{messageDesc,jdbcType=VARCHAR}, #{isInactive,jdbcType=DECIMAL}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{version,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmCmMessage">
+    insert into em_cm_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        message_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="messageTitle != null">
+        message_title,
+      </if>
+      <if test="messageType != null">
+        message_type,
+      </if>
+      <if test="sendTime != null">
+        send_time,
+      </if>
+      <if test="readTime != null">
+        read_time,
+      </if>
+      <if test="isRead != null">
+        is_read,
+      </if>
+      <if test="messageDesc != null">
+        message_desc,
+      </if>
+      <if test="isInactive != null">
+        is_inactive,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="messageTitle != null">
+        #{messageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="messageType != null">
+        #{messageType,jdbcType=DECIMAL},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readTime != null">
+        #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=DECIMAL},
+      </if>
+      <if test="messageDesc != null">
+        #{messageDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isInactive != null">
+        #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmCmMessage">
+    update em_cm_message
+    <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="messageTitle != null">
+        message_title = #{messageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="messageType != null">
+        message_type = #{messageType,jdbcType=DECIMAL},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readTime != null">
+        read_time = #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead,jdbcType=DECIMAL},
+      </if>
+      <if test="messageDesc != null">
+        message_desc = #{messageDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isInactive != null">
+        is_inactive = #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where message_id = #{messageId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmCmMessage">
+    update em_cm_message
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      message_title = #{messageTitle,jdbcType=VARCHAR},
+      message_type = #{messageType,jdbcType=DECIMAL},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      read_time = #{readTime,jdbcType=TIMESTAMP},
+      is_read = #{isRead,jdbcType=DECIMAL},
+      message_desc = #{messageDesc,jdbcType=VARCHAR},
+      is_inactive = #{isInactive,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=DECIMAL}
+    where message_id = #{messageId,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="messageId != null">
+      and message_id = #{messageId,jdbcType=VARCHAR}
+    </if>
+    <if test="customerId != null">
+      and customer_id = #{customerId,jdbcType=VARCHAR}
+    </if>
+    <if test="messageTitle != null">
+      and message_title = #{messageTitle,jdbcType=VARCHAR}
+    </if>
+    <if test="messageType != null">
+      and message_type = #{messageType,jdbcType=DECIMAL}
+    </if>
+    <if test="sendTime != null">
+      and send_time = #{sendTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="readTime != null">
+      and read_time = #{readTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="isRead != null">
+      and is_read = #{isRead,jdbcType=DECIMAL}
+    </if>
+    <if test="messageDesc != null">
+      and message_desc = #{messageDesc,jdbcType=VARCHAR}
+    </if>
+    <if test="isInactive != null">
+      and is_inactive = #{isInactive,jdbcType=DECIMAL}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmCmMessage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_cm_message
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmCmContractGoodsMapperExt">
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+    <resultMap id="GoodsByCategoryIdResultMap" type="com.shopping.model.jsonbean.EmCmContractGoodsJsonBean">
+        <id column="contract_goods_id" jdbcType="VARCHAR" property="contractGoodsId" />
+        <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+        <result column="catgory_id" jdbcType="VARCHAR" property="catgoryId" />
+        <result column="contract_goods_code" jdbcType="VARCHAR" property="contractGoodsCode" />
+        <result column="contract_goods_name" jdbcType="VARCHAR" property="contractGoodsName" />
+        <result column="contract_price" jdbcType="DECIMAL" property="contractPrice" />
+        <result column="special_price" jdbcType="DECIMAL" property="specialPrice" />
+        <result column="min_package" jdbcType="DECIMAL" property="minPackage" />
+        <result column="sales_account" jdbcType="DECIMAL" property="salesAccount" />
+        <result column="contract_score" jdbcType="DECIMAL" property="contractScore" />
+        <result column="contracted" jdbcType="DECIMAL" property="contracted" />
+        <result column="up_act" jdbcType="DECIMAL" property="upAct" />
+        <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="version" jdbcType="DECIMAL" property="version" />
+        <result column="goods_pic" jdbcType="VARCHAR" property="goodsPic" />
+    </resultMap>
+
+    <resultMap id="GoodsByGoodsIdResultMap" type="com.shopping.model.jsonbean.EmCmContractGoodsJsonBean">
+        <id column="contract_goods_id" jdbcType="VARCHAR" property="contractGoodsId" />
+        <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+        <result column="catgory_id" jdbcType="VARCHAR" property="catgoryId" />
+        <result column="contract_goods_code" jdbcType="VARCHAR" property="contractGoodsCode" />
+        <result column="contract_goods_name" jdbcType="VARCHAR" property="contractGoodsName" />
+        <result column="contract_price" jdbcType="DECIMAL" property="contractPrice" />
+        <result column="special_price" jdbcType="DECIMAL" property="specialPrice" />
+        <result column="min_package" jdbcType="DECIMAL" property="minPackage" />
+        <result column="sales_account" jdbcType="DECIMAL" property="salesAccount" />
+        <result column="contract_score" jdbcType="DECIMAL" property="contractScore" />
+        <result column="contracted" jdbcType="DECIMAL" property="contracted" />
+        <result column="up_act" jdbcType="DECIMAL" property="upAct" />
+        <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="version" jdbcType="DECIMAL" property="version" />
+        <result column="goods_pic" jdbcType="VARCHAR" property="goodsPic" />
+        <result column="goods_detail" jdbcType="VARCHAR" property="goodsDetail" />
+        <result column="attr_name_value" jdbcType="VARCHAR" property="attrNameValue" />
+        <result column="gooods_desc" jdbcType="VARCHAR" property="gooodsDesc" />
+        <result column="price_b" jdbcType="DECIMAL" property="priceB" />
+    </resultMap>
+
+    <select id="selectListGoodsByCategoryId" parameterType="java.lang.String" resultMap="GoodsByCategoryIdResultMap">
+select  a.contract_goods_id, a.goods_id, a.catgory_id, a.contract_goods_code, a.contract_goods_name,
+         a.contract_price, a.special_price, a.min_package, a.sales_account, a.contract_score, a.contracted,
+         a.up_act, a.is_inactive, a.created_by, a.created_time, a.updated_by, a.updated_time, a.version,
+         b.goods_pic,b.price_b
+from     EM_CM_CONTRACT_GOODS a
+left join  em_gd_goods b on a.goods_id = b.goods_id
+where    a.catgory_id = #{CategoryId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectContractGoodsDetail" parameterType="java.lang.String" resultMap="GoodsByGoodsIdResultMap">
+select  a.contract_goods_id, a.goods_id, a.catgory_id, a.contract_goods_code, a.contract_goods_name,
+         a.contract_price, a.special_price, a.min_package, a.sales_account, a.contract_score, a.contracted,
+         a.up_act, a.is_inactive, a.created_by, a.created_time, a.updated_by, a.updated_time, a.version,
+         b.goods_pic,b.gooods_desc,b.unit,b.sales_volume,b.inventory,b.score,b.goods_detail,b.attr_name_value,
+         b.price_b
+from     EM_CM_CONTRACT_GOODS a
+left join  em_gd_goods b on a.goods_id = b.goods_id
+where    a.contract_goods_id = #{goodsIdz,jdbcType=VARCHAR}
+
+    </select>
+
+    <select id="selectListByIds" parameterType="java.util.ArrayList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from em_cm_contract_goods where contract_goods_id in
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectListByContractGoodsName" parameterType="java.util.Map" resultMap="GoodsByCategoryIdResultMap">
+        select
+          a.contract_goods_id,
+          a.goods_id,
+          a.catgory_id,
+          a.contract_goods_code,
+          a.contract_goods_name,
+          a.contract_price,
+          a.special_price,
+          a.min_package,
+          a.sales_account,
+          a.contract_score,
+          a.contracted,
+          a.up_act,
+          a.is_inactive,
+          a.created_by,
+          a.created_time,
+          a.updated_by,
+          a.updated_time,
+          a.version,
+          b.goods_pic,
+          b.price_b
+        from em_cm_contract_goods a left join em_gd_goods b on a.goods_id = b.goods_id
+        where a.catgory_id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and a.contract_goods_name like concat('%',#{name}, '%')
+    </select>
+</mapper>

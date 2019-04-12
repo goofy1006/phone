@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmOdOrdersMapperExt">
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+
+    <sql id="sql_condition_bystatus">
+        <if test="customerId != null and customerId != ''">
+            and customer_id = #{customerId,jdbcType=VARCHAR}
+        </if>
+
+        <if test="orderStatus != null">
+        <choose>
+            <when test="orderStatus == 10110010 or orderStatus == 10110015">
+                and order_status in ('10110010','10110015')
+            </when>
+            <otherwise>
+                and order_status = #{orderStatus,jdbcType=DECIMAL}
+            </otherwise>
+        </choose>
+        </if>
+        <!--<if test="orderStatus != null">
+            <if test="orderStatus == 10110010 or orderStatus == 10110015">
+                and order_status = '10110010' or order_status = '10110015'
+            </if>
+            and order_status = #{orderStatus,jdbcType=DECIMAL}
+        </if>-->
+    </sql>
+    <select id="selectListByStatus" parameterType="com.shopping.model.EmOdOrders" resultType="com.shopping.model.jsonbean.EmOdOrdersJsonBean">
+        select
+            order_id as orderId,
+            order_no as orderNo,
+            order_amt as orderAmt,
+            order_status as orderStatus,
+            is_audited as isAudited,
+            actual_amt as actualAmount
+        from em_od_orders
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <include refid="sql_condition_bystatus" />
+        </trim>
+    </select>
+    
+    <update id="updateOrderStatus" parameterType="com.shopping.model.EmOdOrders">
+  update em_od_orders SET
+         order_status = #{orderStatus,jdbcType = DECIMAL},
+         pay_time = #{payTime,jdbcType = TIMESTAMP},
+         is_payback = #{isPayback,jdbcType = DECIMAL},
+         pay_flag = #{payFlag, jdbcType=VARCHAR},
+         updated_time = #{updatedTime,jdbcType = TIMESTAMP}
+   where order_no = #{orderNo,jdbcType = VARCHAR}
+
+    </update>
+
+    <select id="selectOrderByOrderNo" parameterType="java.lang.String" resultType="com.shopping.model.jsonbean.OrderDetailJsonBean">
+        select
+          order_no as orderNo,
+          order_date as orderDate,
+          pay_way as payWay,
+          pay_time as payTime,
+          linkman as linkman,
+          linkphone as linkphone,
+          address as address,
+          order_amt as orderAmt,
+          actual_amt as actualAmt,
+          carrier_name as carrierName,
+          wb_no as wbNo
+        from em_od_orders where order_no = #{orderNo, jdbcType=VARCHAR}
+    </select>
+
+</mapper>

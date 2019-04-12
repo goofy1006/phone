@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmOdFavoriteMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmOdFavorite">
+    <id column="favorite_id" jdbcType="VARCHAR" property="favoriteId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    favorite_id, customer_id, goods_id, store_id, store_name, add_time, created_time, 
+    created_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_od_favorite
+    where favorite_id = #{favoriteId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_od_favorite
+    where favorite_id = #{favoriteId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmOdFavorite">
+    insert into em_od_favorite (favorite_id, customer_id, goods_id, 
+      store_id, store_name, add_time, 
+      created_time, created_by)
+    values (#{favoriteId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{storeId,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmOdFavorite">
+    insert into em_od_favorite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="favoriteId != null">
+        favorite_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="favoriteId != null">
+        #{favoriteId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmOdFavorite">
+    update em_od_favorite
+    <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where favorite_id = #{favoriteId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmOdFavorite">
+    update em_od_favorite
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR}
+    where favorite_id = #{favoriteId,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="favoriteId != null">
+      and favorite_id = #{favoriteId,jdbcType=VARCHAR}
+    </if>
+    <if test="customerId != null">
+      and customer_id = #{customerId,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsId != null">
+      and goods_id = #{goodsId,jdbcType=VARCHAR}
+    </if>
+    <if test="storeId != null">
+      and store_id = #{storeId,jdbcType=VARCHAR}
+    </if>
+    <if test="storeName != null">
+      and store_name = #{storeName,jdbcType=VARCHAR}
+    </if>
+    <if test="addTime != null">
+      and add_time = #{addTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmOdFavorite" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_od_favorite
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

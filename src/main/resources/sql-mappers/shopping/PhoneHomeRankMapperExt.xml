@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.PhoneHomeRankMapperExt">
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+    <resultMap id="HomeRankJsonBeanResultMap" type="com.shopping.model.jsonbean.PhoneHomeRankJsonBean">
+        <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+        <result column="rank_id" jdbcType="VARCHAR" property="rankId" />
+        <result column="rank_name" jdbcType="VARCHAR" property="rankName" />
+        <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+        <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+        <result column="order_no" jdbcType="INTEGER" property="orderNo" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+        <result column="version" jdbcType="DECIMAL" property="version" />
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+        <result column="contract_goods_name" jdbcType="VARCHAR" property="contractGoodsName" />
+        <result column="contract_price" jdbcType="DECIMAL" property="contractPrice" />
+        <result column="price_b" jdbcType="DECIMAL" property="priceB" />
+        <result column="goods_pic" jdbcType="VARCHAR" property="goodsPic" />
+        <result column="contract_goods_id" jdbcType="VARCHAR" property="contractGoodsId" />
+    </resultMap>
+
+    <select id="selectListRank" parameterType="com.shopping.model.jsonbean.PhoneHomeRankJsonBean" resultMap="HomeRankJsonBeanResultMap">
+        select a.uuid, a.rank_name, a.category_id, a.goods_id, a.order_no, a.status,
+        a.created_time, a.created_by, a.updated_time, a.update_by, a.version,c.goods_pic,
+        c.price_b,d.contract_goods_name,d.contract_price, d.contract_goods_id
+        from phone_home_rank a
+        left join em_cm_contract_goods d on a.goods_id = d.contract_goods_id
+        left join em_gd_goods c on c.goods_id = d.goods_id
+        where 1=1
+        <if test="uuid != null">
+            and a.uuid = #{uuid,jdbcType=VARCHAR}
+        </if>
+        <if test="rankName != null">
+            and a.rank_name = #{rankName,jdbcType=VARCHAR}
+        </if>
+        <if test="categoryId != null">
+            and a.category_id = #{categoryId,jdbcType=VARCHAR}
+        </if>
+        <if test="goodsId != null">
+            and a.goods_id = #{goodsId,jdbcType=VARCHAR}
+        </if>
+        <if test="orderNo != null">
+            and a.order_no = #{orderNo,jdbcType=INTEGER}
+        </if>
+        <if test="status != null">
+            and a.status = #{status,jdbcType=INTEGER}
+        </if>
+        <if test="createdTime != null">
+            and a.created_time = #{createdTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="createdBy != null">
+            and a.created_by = #{createdBy,jdbcType=VARCHAR}
+        </if>
+        <if test="updatedTime != null">
+            and a.updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateBy != null">
+            and a.update_by = #{updateBy,jdbcType=VARCHAR}
+        </if>
+        <if test="version != null">
+            and a.version = #{version,jdbcType=DECIMAL}
+        </if>
+    </select>
+</mapper>

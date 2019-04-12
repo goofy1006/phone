@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmBbRegionMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmBbRegion">
+    <id column="region_id" jdbcType="VARCHAR" property="regionId" />
+    <result column="parent_region_id" jdbcType="VARCHAR" property="parentRegionId" />
+    <result column="erp_region_id" jdbcType="VARCHAR" property="erpRegionId" />
+    <result column="region_type" jdbcType="DECIMAL" property="regionType" />
+    <result column="region_name" jdbcType="VARCHAR" property="regionName" />
+    <result column="region_logo" jdbcType="VARCHAR" property="regionLogo" />
+    <result column="region_order" jdbcType="DECIMAL" property="regionOrder" />
+    <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    region_id, parent_region_id, erp_region_id, region_type, region_name, region_logo, 
+    region_order, is_inactive, created_time, created_by, updated_time, updated_by, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_bb_region
+    where region_id = #{regionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_bb_region
+    where region_id = #{regionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmBbRegion">
+    insert into em_bb_region (region_id, parent_region_id, erp_region_id, 
+      region_type, region_name, region_logo, 
+      region_order, is_inactive, created_time, 
+      created_by, updated_time, updated_by, 
+      version)
+    values (#{regionId,jdbcType=VARCHAR}, #{parentRegionId,jdbcType=VARCHAR}, #{erpRegionId,jdbcType=VARCHAR}, 
+      #{regionType,jdbcType=DECIMAL}, #{regionName,jdbcType=VARCHAR}, #{regionLogo,jdbcType=VARCHAR}, 
+      #{regionOrder,jdbcType=DECIMAL}, #{isInactive,jdbcType=DECIMAL}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{createdBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{version,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmBbRegion">
+    insert into em_bb_region
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regionId != null">
+        region_id,
+      </if>
+      <if test="parentRegionId != null">
+        parent_region_id,
+      </if>
+      <if test="erpRegionId != null">
+        erp_region_id,
+      </if>
+      <if test="regionType != null">
+        region_type,
+      </if>
+      <if test="regionName != null">
+        region_name,
+      </if>
+      <if test="regionLogo != null">
+        region_logo,
+      </if>
+      <if test="regionOrder != null">
+        region_order,
+      </if>
+      <if test="isInactive != null">
+        is_inactive,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regionId != null">
+        #{regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentRegionId != null">
+        #{parentRegionId,jdbcType=VARCHAR},
+      </if>
+      <if test="erpRegionId != null">
+        #{erpRegionId,jdbcType=VARCHAR},
+      </if>
+      <if test="regionType != null">
+        #{regionType,jdbcType=DECIMAL},
+      </if>
+      <if test="regionName != null">
+        #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionLogo != null">
+        #{regionLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="regionOrder != null">
+        #{regionOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="isInactive != null">
+        #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmBbRegion">
+    update em_bb_region
+    <set>
+      <if test="parentRegionId != null">
+        parent_region_id = #{parentRegionId,jdbcType=VARCHAR},
+      </if>
+      <if test="erpRegionId != null">
+        erp_region_id = #{erpRegionId,jdbcType=VARCHAR},
+      </if>
+      <if test="regionType != null">
+        region_type = #{regionType,jdbcType=DECIMAL},
+      </if>
+      <if test="regionName != null">
+        region_name = #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionLogo != null">
+        region_logo = #{regionLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="regionOrder != null">
+        region_order = #{regionOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="isInactive != null">
+        is_inactive = #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where region_id = #{regionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmBbRegion">
+    update em_bb_region
+    set parent_region_id = #{parentRegionId,jdbcType=VARCHAR},
+      erp_region_id = #{erpRegionId,jdbcType=VARCHAR},
+      region_type = #{regionType,jdbcType=DECIMAL},
+      region_name = #{regionName,jdbcType=VARCHAR},
+      region_logo = #{regionLogo,jdbcType=VARCHAR},
+      region_order = #{regionOrder,jdbcType=DECIMAL},
+      is_inactive = #{isInactive,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=DECIMAL}
+    where region_id = #{regionId,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="regionId != null">
+      and region_id = #{regionId,jdbcType=VARCHAR}
+    </if>
+    <if test="parentRegionId != null">
+      and parent_region_id = #{parentRegionId,jdbcType=VARCHAR}
+    </if>
+    <if test="erpRegionId != null">
+      and erp_region_id = #{erpRegionId,jdbcType=VARCHAR}
+    </if>
+    <if test="regionType != null">
+      and region_type = #{regionType,jdbcType=DECIMAL}
+    </if>
+    <if test="regionName != null">
+      and region_name = #{regionName,jdbcType=VARCHAR}
+    </if>
+    <if test="regionLogo != null">
+      and region_logo = #{regionLogo,jdbcType=VARCHAR}
+    </if>
+    <if test="regionOrder != null">
+      and region_order = #{regionOrder,jdbcType=DECIMAL}
+    </if>
+    <if test="isInactive != null">
+      and is_inactive = #{isInactive,jdbcType=DECIMAL}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmBbRegion" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_bb_region
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.PhoneCommonQuestionMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.PhoneCommonQuestion">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="problem_desc" jdbcType="VARCHAR" property="problemDesc" />
+    <result column="solution" jdbcType="VARCHAR" property="solution" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, problem_desc, solution, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from phone_common_question
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from phone_common_question
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.PhoneCommonQuestion">
+    insert into phone_common_question (uuid, problem_desc, solution, 
+      create_time)
+    values (#{uuid,jdbcType=VARCHAR}, #{problemDesc,jdbcType=VARCHAR}, #{solution,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.PhoneCommonQuestion">
+    insert into phone_common_question
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="problemDesc != null">
+        problem_desc,
+      </if>
+      <if test="solution != null">
+        solution,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="problemDesc != null">
+        #{problemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="solution != null">
+        #{solution,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.PhoneCommonQuestion">
+    update phone_common_question
+    <set>
+      <if test="problemDesc != null">
+        problem_desc = #{problemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="solution != null">
+        solution = #{solution,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.PhoneCommonQuestion">
+    update phone_common_question
+    set problem_desc = #{problemDesc,jdbcType=VARCHAR},
+      solution = #{solution,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="uuid != null">
+      and uuid = #{uuid,jdbcType=VARCHAR}
+    </if>
+    <if test="problemDesc != null">
+      and problem_desc = #{problemDesc,jdbcType=VARCHAR}
+    </if>
+    <if test="solution != null">
+      and solution = #{solution,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.PhoneCommonQuestion" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from phone_common_question
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

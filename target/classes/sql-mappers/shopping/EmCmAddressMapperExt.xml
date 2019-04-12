@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmCmAddressMapperExt">
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+    <resultMap id="AddressListResultMap" type="com.shopping.model.jsonbean.EmCmAddressJsonBean">
+        <id column="address_id" jdbcType="VARCHAR" property="addressId" />
+        <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+        <result column="address_name" jdbcType="VARCHAR" property="addressName" />
+        <result column="county" jdbcType="VARCHAR" property="county" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="country" jdbcType="VARCHAR" property="country" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="linkman" jdbcType="VARCHAR" property="linkman" />
+        <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+        <result column="linkphone" jdbcType="VARCHAR" property="linkphone" />
+        <result column="is_default" jdbcType="DECIMAL" property="isDefault" />
+        <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="version" jdbcType="DECIMAL" property="version" />
+        <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+        <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+        <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    </resultMap>
+
+    <select id="selectAddressList" parameterType="com.shopping.model.EmCmAddress" resultMap="AddressListResultMap">
+        select  a.address_id, a.customer_id, a.address_name, a.county, a.province, a.city, a.country, a.address,
+        a.linkman, a.telephone, a.linkphone, a.is_default, a.is_inactive, a.created_time, a.created_by,
+        a.updated_time, a.updated_by, a.version,
+        (select region_name from em_bb_region where region_id = a.province) as province_Name,
+        (select region_name from em_bb_region where region_id = a.city) as city_Name,
+        (select region_name from em_bb_region where region_id = a.country) as country_Name
+        from em_cm_address a
+    where 1=1
+        <if test="addressId != null">
+            and address_id = #{addressId,jdbcType=VARCHAR}
+        </if>
+        <if test="customerId != null">
+            and customer_id = #{customerId,jdbcType=VARCHAR}
+        </if>
+        <if test="addressName != null">
+            and address_name = #{addressName,jdbcType=VARCHAR}
+        </if>
+        <if test="county != null">
+            and county = #{county,jdbcType=VARCHAR}
+        </if>
+        <if test="province != null">
+            and province = #{province,jdbcType=VARCHAR}
+        </if>
+        <if test="city != null">
+            and city = #{city,jdbcType=VARCHAR}
+        </if>
+        <if test="country != null">
+            and country = #{country,jdbcType=VARCHAR}
+        </if>
+        <if test="address != null">
+            and address = #{address,jdbcType=VARCHAR}
+        </if>
+        <if test="linkman != null">
+            and linkman = #{linkman,jdbcType=VARCHAR}
+        </if>
+        <if test="telephone != null">
+            and telephone = #{telephone,jdbcType=VARCHAR}
+        </if>
+        <if test="linkphone != null">
+            and linkphone = #{linkphone,jdbcType=VARCHAR}
+        </if>
+        <if test="isDefault != null">
+            and is_default = #{isDefault,jdbcType=DECIMAL}
+        </if>
+        <if test="isInactive != null">
+            and is_inactive = #{isInactive,jdbcType=DECIMAL}
+        </if>
+        <if test="createdTime != null">
+            and created_time = #{createdTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="createdBy != null">
+            and created_by = #{createdBy,jdbcType=VARCHAR}
+        </if>
+        <if test="updatedTime != null">
+            and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updatedBy != null">
+            and updated_by = #{updatedBy,jdbcType=VARCHAR}
+        </if>
+        <if test="version != null">
+            and version = #{version,jdbcType=DECIMAL}
+        </if>
+    </select>
+
+    <update id="updateIsDefault" parameterType="java.lang.String">
+update em_cm_address set is_default = 0 where customer_id = #{customerId,jdbcType = VARCHAR}
+    </update>
+</mapper>

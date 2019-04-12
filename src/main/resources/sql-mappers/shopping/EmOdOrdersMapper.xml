@@ -1,0 +1,1068 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmOdOrdersMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmOdOrders">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="contract_customer_id" jdbcType="VARCHAR" property="contractCustomerId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="order_no" jdbcType="CHAR" property="orderNo" />
+    <result column="erp_so_no" jdbcType="VARCHAR" property="erpSoNo" />
+    <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="cost_center_id" jdbcType="VARCHAR" property="costCenterId" />
+    <result column="order_type" jdbcType="DECIMAL" property="orderType" />
+    <result column="order_status" jdbcType="DECIMAL" property="orderStatus" />
+    <result column="old_order_status" jdbcType="DECIMAL" property="oldOrderStatus" />
+    <result column="audit_result" jdbcType="DECIMAL" property="auditResult" />
+    <result column="order_amt" jdbcType="DECIMAL" property="orderAmt" />
+    <result column="current_id" jdbcType="VARCHAR" property="currentId" />
+    <result column="address_id" jdbcType="VARCHAR" property="addressId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="linkman" jdbcType="VARCHAR" property="linkman" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="linkphone" jdbcType="VARCHAR" property="linkphone" />
+    <result column="delivery_amt" jdbcType="DECIMAL" property="deliveryAmt" />
+    <result column="lading_way" jdbcType="DECIMAL" property="ladingWay" />
+    <result column="pay_way" jdbcType="DECIMAL" property="payWay" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+    <result column="delivery_period" jdbcType="DECIMAL" property="deliveryPeriod" />
+    <result column="received_time" jdbcType="TIMESTAMP" property="receivedTime" />
+    <result column="is_payback" jdbcType="DECIMAL" property="isPayback" />
+    <result column="payback_time" jdbcType="TIMESTAMP" property="paybackTime" />
+    <result column="payback_amt" jdbcType="DECIMAL" property="paybackAmt" />
+    <result column="carrier_name" jdbcType="VARCHAR" property="carrierName" />
+    <result column="wb_no" jdbcType="VARCHAR" property="wbNo" />
+    <result column="order_remark" jdbcType="VARCHAR" property="orderRemark" />
+    <result column="store_remark" jdbcType="VARCHAR" property="storeRemark" />
+    <result column="apply_content" jdbcType="VARCHAR" property="applyContent" />
+    <result column="invoice_type" jdbcType="DECIMAL" property="invoiceType" />
+    <result column="invoice_title" jdbcType="VARCHAR" property="invoiceTitle" />
+    <result column="is_audited" jdbcType="DECIMAL" property="isAudited" />
+    <result column="order_audit_id" jdbcType="VARCHAR" property="orderAuditId" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="invoice_id" jdbcType="VARCHAR" property="invoiceId" />
+    <result column="pushtoerp" jdbcType="DECIMAL" property="pushtoerp" />
+    <result column="invoice_status" jdbcType="DECIMAL" property="invoiceStatus" />
+    <result column="delivery_all_time" jdbcType="TIMESTAMP" property="deliveryAllTime" />
+    <result column="is_erpcancel" jdbcType="DECIMAL" property="isErpcancel" />
+    <result column="rate" jdbcType="DECIMAL" property="rate" />
+    <result column="complete_time" jdbcType="TIMESTAMP" property="completeTime" />
+    <result column="outside_orderno" jdbcType="VARCHAR" property="outsideOrderno" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="pay_flag" jdbcType="VARCHAR" property="payFlag" />
+    <result column="pay_id" jdbcType="VARCHAR" property="payId" />
+    <result column="money_release_state" jdbcType="VARCHAR" property="moneyReleaseState" />
+    <result column="money_release" jdbcType="DECIMAL" property="moneyRelease" />
+    <result column="margin_pay_flag" jdbcType="VARCHAR" property="marginPayFlag" />
+    <result column="margin_pay_money" jdbcType="DECIMAL" property="marginPayMoney" />
+    <result column="invoice_amount_notyet" jdbcType="DECIMAL" property="invoiceAmountNotyet" />
+    <result column="invoice_amount" jdbcType="DECIMAL" property="invoiceAmount" />
+    <result column="is_invoice_end" jdbcType="DECIMAL" property="isInvoiceEnd" />
+    <result column="is_pingtai" jdbcType="INTEGER" property="isPingtai" />
+    <result column="actual_amt" jdbcType="DECIMAL" property="actualAmt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, contract_customer_id, customer_id, order_no, erp_so_no, store_id, store_name, 
+    cost_center_id, order_type, order_status, old_order_status, audit_result, order_amt, 
+    current_id, address_id, address, linkman, telephone, linkphone, delivery_amt, lading_way, 
+    pay_way, order_date, pay_time, delivery_time, delivery_period, received_time, is_payback, 
+    payback_time, payback_amt, carrier_name, wb_no, order_remark, store_remark, apply_content, 
+    invoice_type, invoice_title, is_audited, order_audit_id, created_by, created_time, 
+    updated_by, updated_time, version, province, city, country, invoice_id, pushtoerp, 
+    invoice_status, delivery_all_time, is_erpcancel, rate, complete_time, outside_orderno, 
+    supplier_id, supplier_name, pay_type, pay_flag, pay_id, money_release_state, money_release, 
+    margin_pay_flag, margin_pay_money, invoice_amount_notyet, invoice_amount, is_invoice_end, 
+    is_pingtai, actual_amt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_od_orders
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_od_orders
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmOdOrders">
+    insert into em_od_orders (order_id, contract_customer_id, customer_id, 
+      order_no, erp_so_no, store_id, 
+      store_name, cost_center_id, order_type, 
+      order_status, old_order_status, audit_result, 
+      order_amt, current_id, address_id, 
+      address, linkman, telephone, 
+      linkphone, delivery_amt, lading_way, 
+      pay_way, order_date, pay_time, 
+      delivery_time, delivery_period, received_time, 
+      is_payback, payback_time, payback_amt, 
+      carrier_name, wb_no, order_remark, 
+      store_remark, apply_content, invoice_type, 
+      invoice_title, is_audited, order_audit_id, 
+      created_by, created_time, updated_by, 
+      updated_time, version, province, 
+      city, country, invoice_id, 
+      pushtoerp, invoice_status, delivery_all_time, 
+      is_erpcancel, rate, complete_time, 
+      outside_orderno, supplier_id, supplier_name, 
+      pay_type, pay_flag, pay_id, 
+      money_release_state, money_release, margin_pay_flag, 
+      margin_pay_money, invoice_amount_notyet, invoice_amount, 
+      is_invoice_end, is_pingtai, actual_amt
+      )
+    values (#{orderId,jdbcType=VARCHAR}, #{contractCustomerId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=CHAR}, #{erpSoNo,jdbcType=VARCHAR}, #{storeId,jdbcType=VARCHAR}, 
+      #{storeName,jdbcType=VARCHAR}, #{costCenterId,jdbcType=VARCHAR}, #{orderType,jdbcType=DECIMAL}, 
+      #{orderStatus,jdbcType=DECIMAL}, #{oldOrderStatus,jdbcType=DECIMAL}, #{auditResult,jdbcType=DECIMAL}, 
+      #{orderAmt,jdbcType=DECIMAL}, #{currentId,jdbcType=VARCHAR}, #{addressId,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{linkphone,jdbcType=VARCHAR}, #{deliveryAmt,jdbcType=DECIMAL}, #{ladingWay,jdbcType=DECIMAL}, 
+      #{payWay,jdbcType=DECIMAL}, #{orderDate,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{deliveryTime,jdbcType=TIMESTAMP}, #{deliveryPeriod,jdbcType=DECIMAL}, #{receivedTime,jdbcType=TIMESTAMP}, 
+      #{isPayback,jdbcType=DECIMAL}, #{paybackTime,jdbcType=TIMESTAMP}, #{paybackAmt,jdbcType=DECIMAL}, 
+      #{carrierName,jdbcType=VARCHAR}, #{wbNo,jdbcType=VARCHAR}, #{orderRemark,jdbcType=VARCHAR}, 
+      #{storeRemark,jdbcType=VARCHAR}, #{applyContent,jdbcType=VARCHAR}, #{invoiceType,jdbcType=DECIMAL}, 
+      #{invoiceTitle,jdbcType=VARCHAR}, #{isAudited,jdbcType=DECIMAL}, #{orderAuditId,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{version,jdbcType=DECIMAL}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{invoiceId,jdbcType=VARCHAR}, 
+      #{pushtoerp,jdbcType=DECIMAL}, #{invoiceStatus,jdbcType=DECIMAL}, #{deliveryAllTime,jdbcType=TIMESTAMP}, 
+      #{isErpcancel,jdbcType=DECIMAL}, #{rate,jdbcType=DECIMAL}, #{completeTime,jdbcType=TIMESTAMP}, 
+      #{outsideOrderno,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{supplierName,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=VARCHAR}, #{payFlag,jdbcType=VARCHAR}, #{payId,jdbcType=VARCHAR}, 
+      #{moneyReleaseState,jdbcType=VARCHAR}, #{moneyRelease,jdbcType=DECIMAL}, #{marginPayFlag,jdbcType=VARCHAR}, 
+      #{marginPayMoney,jdbcType=DECIMAL}, #{invoiceAmountNotyet,jdbcType=DECIMAL}, #{invoiceAmount,jdbcType=DECIMAL}, 
+      #{isInvoiceEnd,jdbcType=DECIMAL}, #{isPingtai,jdbcType=INTEGER}, #{actualAmt,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmOdOrders">
+    insert into em_od_orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="contractCustomerId != null">
+        contract_customer_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="erpSoNo != null">
+        erp_so_no,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="costCenterId != null">
+        cost_center_id,
+      </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="oldOrderStatus != null">
+        old_order_status,
+      </if>
+      <if test="auditResult != null">
+        audit_result,
+      </if>
+      <if test="orderAmt != null">
+        order_amt,
+      </if>
+      <if test="currentId != null">
+        current_id,
+      </if>
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="linkman != null">
+        linkman,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="linkphone != null">
+        linkphone,
+      </if>
+      <if test="deliveryAmt != null">
+        delivery_amt,
+      </if>
+      <if test="ladingWay != null">
+        lading_way,
+      </if>
+      <if test="payWay != null">
+        pay_way,
+      </if>
+      <if test="orderDate != null">
+        order_date,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="deliveryPeriod != null">
+        delivery_period,
+      </if>
+      <if test="receivedTime != null">
+        received_time,
+      </if>
+      <if test="isPayback != null">
+        is_payback,
+      </if>
+      <if test="paybackTime != null">
+        payback_time,
+      </if>
+      <if test="paybackAmt != null">
+        payback_amt,
+      </if>
+      <if test="carrierName != null">
+        carrier_name,
+      </if>
+      <if test="wbNo != null">
+        wb_no,
+      </if>
+      <if test="orderRemark != null">
+        order_remark,
+      </if>
+      <if test="storeRemark != null">
+        store_remark,
+      </if>
+      <if test="applyContent != null">
+        apply_content,
+      </if>
+      <if test="invoiceType != null">
+        invoice_type,
+      </if>
+      <if test="invoiceTitle != null">
+        invoice_title,
+      </if>
+      <if test="isAudited != null">
+        is_audited,
+      </if>
+      <if test="orderAuditId != null">
+        order_audit_id,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="invoiceId != null">
+        invoice_id,
+      </if>
+      <if test="pushtoerp != null">
+        pushtoerp,
+      </if>
+      <if test="invoiceStatus != null">
+        invoice_status,
+      </if>
+      <if test="deliveryAllTime != null">
+        delivery_all_time,
+      </if>
+      <if test="isErpcancel != null">
+        is_erpcancel,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="completeTime != null">
+        complete_time,
+      </if>
+      <if test="outsideOrderno != null">
+        outside_orderno,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="supplierName != null">
+        supplier_name,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="payFlag != null">
+        pay_flag,
+      </if>
+      <if test="payId != null">
+        pay_id,
+      </if>
+      <if test="moneyReleaseState != null">
+        money_release_state,
+      </if>
+      <if test="moneyRelease != null">
+        money_release,
+      </if>
+      <if test="marginPayFlag != null">
+        margin_pay_flag,
+      </if>
+      <if test="marginPayMoney != null">
+        margin_pay_money,
+      </if>
+      <if test="invoiceAmountNotyet != null">
+        invoice_amount_notyet,
+      </if>
+      <if test="invoiceAmount != null">
+        invoice_amount,
+      </if>
+      <if test="isInvoiceEnd != null">
+        is_invoice_end,
+      </if>
+      <if test="isPingtai != null">
+        is_pingtai,
+      </if>
+      <if test="actualAmt != null">
+        actual_amt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractCustomerId != null">
+        #{contractCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=CHAR},
+      </if>
+      <if test="erpSoNo != null">
+        #{erpSoNo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="costCenterId != null">
+        #{costCenterId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="oldOrderStatus != null">
+        #{oldOrderStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="auditResult != null">
+        #{auditResult,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmt != null">
+        #{orderAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="currentId != null">
+        #{currentId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null">
+        #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null">
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkphone != null">
+        #{linkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAmt != null">
+        #{deliveryAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="ladingWay != null">
+        #{ladingWay,jdbcType=DECIMAL},
+      </if>
+      <if test="payWay != null">
+        #{payWay,jdbcType=DECIMAL},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryPeriod != null">
+        #{deliveryPeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="receivedTime != null">
+        #{receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isPayback != null">
+        #{isPayback,jdbcType=DECIMAL},
+      </if>
+      <if test="paybackTime != null">
+        #{paybackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paybackAmt != null">
+        #{paybackAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="carrierName != null">
+        #{carrierName,jdbcType=VARCHAR},
+      </if>
+      <if test="wbNo != null">
+        #{wbNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRemark != null">
+        #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRemark != null">
+        #{storeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="applyContent != null">
+        #{applyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null">
+        #{invoiceType,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceTitle != null">
+        #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="isAudited != null">
+        #{isAudited,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAuditId != null">
+        #{orderAuditId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceId != null">
+        #{invoiceId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushtoerp != null">
+        #{pushtoerp,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceStatus != null">
+        #{invoiceStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryAllTime != null">
+        #{deliveryAllTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isErpcancel != null">
+        #{isErpcancel,jdbcType=DECIMAL},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="completeTime != null">
+        #{completeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outsideOrderno != null">
+        #{outsideOrderno,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierName != null">
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payFlag != null">
+        #{payFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="payId != null">
+        #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyReleaseState != null">
+        #{moneyReleaseState,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyRelease != null">
+        #{moneyRelease,jdbcType=DECIMAL},
+      </if>
+      <if test="marginPayFlag != null">
+        #{marginPayFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="marginPayMoney != null">
+        #{marginPayMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceAmountNotyet != null">
+        #{invoiceAmountNotyet,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceAmount != null">
+        #{invoiceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isInvoiceEnd != null">
+        #{isInvoiceEnd,jdbcType=DECIMAL},
+      </if>
+      <if test="isPingtai != null">
+        #{isPingtai,jdbcType=INTEGER},
+      </if>
+      <if test="actualAmt != null">
+        #{actualAmt,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmOdOrders">
+    update em_od_orders
+    <set>
+      <if test="contractCustomerId != null">
+        contract_customer_id = #{contractCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=CHAR},
+      </if>
+      <if test="erpSoNo != null">
+        erp_so_no = #{erpSoNo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="costCenterId != null">
+        cost_center_id = #{costCenterId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="oldOrderStatus != null">
+        old_order_status = #{oldOrderStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="auditResult != null">
+        audit_result = #{auditResult,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmt != null">
+        order_amt = #{orderAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="currentId != null">
+        current_id = #{currentId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null">
+        address_id = #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null">
+        linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkphone != null">
+        linkphone = #{linkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAmt != null">
+        delivery_amt = #{deliveryAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="ladingWay != null">
+        lading_way = #{ladingWay,jdbcType=DECIMAL},
+      </if>
+      <if test="payWay != null">
+        pay_way = #{payWay,jdbcType=DECIMAL},
+      </if>
+      <if test="orderDate != null">
+        order_date = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryPeriod != null">
+        delivery_period = #{deliveryPeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="receivedTime != null">
+        received_time = #{receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isPayback != null">
+        is_payback = #{isPayback,jdbcType=DECIMAL},
+      </if>
+      <if test="paybackTime != null">
+        payback_time = #{paybackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paybackAmt != null">
+        payback_amt = #{paybackAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="carrierName != null">
+        carrier_name = #{carrierName,jdbcType=VARCHAR},
+      </if>
+      <if test="wbNo != null">
+        wb_no = #{wbNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRemark != null">
+        order_remark = #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="storeRemark != null">
+        store_remark = #{storeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="applyContent != null">
+        apply_content = #{applyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null">
+        invoice_type = #{invoiceType,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceTitle != null">
+        invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="isAudited != null">
+        is_audited = #{isAudited,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAuditId != null">
+        order_audit_id = #{orderAuditId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceId != null">
+        invoice_id = #{invoiceId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushtoerp != null">
+        pushtoerp = #{pushtoerp,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceStatus != null">
+        invoice_status = #{invoiceStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryAllTime != null">
+        delivery_all_time = #{deliveryAllTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isErpcancel != null">
+        is_erpcancel = #{isErpcancel,jdbcType=DECIMAL},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="completeTime != null">
+        complete_time = #{completeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outsideOrderno != null">
+        outside_orderno = #{outsideOrderno,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierName != null">
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payFlag != null">
+        pay_flag = #{payFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="payId != null">
+        pay_id = #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyReleaseState != null">
+        money_release_state = #{moneyReleaseState,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyRelease != null">
+        money_release = #{moneyRelease,jdbcType=DECIMAL},
+      </if>
+      <if test="marginPayFlag != null">
+        margin_pay_flag = #{marginPayFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="marginPayMoney != null">
+        margin_pay_money = #{marginPayMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceAmountNotyet != null">
+        invoice_amount_notyet = #{invoiceAmountNotyet,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceAmount != null">
+        invoice_amount = #{invoiceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isInvoiceEnd != null">
+        is_invoice_end = #{isInvoiceEnd,jdbcType=DECIMAL},
+      </if>
+      <if test="isPingtai != null">
+        is_pingtai = #{isPingtai,jdbcType=INTEGER},
+      </if>
+      <if test="actualAmt != null">
+        actual_amt = #{actualAmt,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmOdOrders">
+    update em_od_orders
+    set contract_customer_id = #{contractCustomerId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=CHAR},
+      erp_so_no = #{erpSoNo,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      cost_center_id = #{costCenterId,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=DECIMAL},
+      order_status = #{orderStatus,jdbcType=DECIMAL},
+      old_order_status = #{oldOrderStatus,jdbcType=DECIMAL},
+      audit_result = #{auditResult,jdbcType=DECIMAL},
+      order_amt = #{orderAmt,jdbcType=DECIMAL},
+      current_id = #{currentId,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      linkphone = #{linkphone,jdbcType=VARCHAR},
+      delivery_amt = #{deliveryAmt,jdbcType=DECIMAL},
+      lading_way = #{ladingWay,jdbcType=DECIMAL},
+      pay_way = #{payWay,jdbcType=DECIMAL},
+      order_date = #{orderDate,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      delivery_period = #{deliveryPeriod,jdbcType=DECIMAL},
+      received_time = #{receivedTime,jdbcType=TIMESTAMP},
+      is_payback = #{isPayback,jdbcType=DECIMAL},
+      payback_time = #{paybackTime,jdbcType=TIMESTAMP},
+      payback_amt = #{paybackAmt,jdbcType=DECIMAL},
+      carrier_name = #{carrierName,jdbcType=VARCHAR},
+      wb_no = #{wbNo,jdbcType=VARCHAR},
+      order_remark = #{orderRemark,jdbcType=VARCHAR},
+      store_remark = #{storeRemark,jdbcType=VARCHAR},
+      apply_content = #{applyContent,jdbcType=VARCHAR},
+      invoice_type = #{invoiceType,jdbcType=DECIMAL},
+      invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      is_audited = #{isAudited,jdbcType=DECIMAL},
+      order_audit_id = #{orderAuditId,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=DECIMAL},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      invoice_id = #{invoiceId,jdbcType=VARCHAR},
+      pushtoerp = #{pushtoerp,jdbcType=DECIMAL},
+      invoice_status = #{invoiceStatus,jdbcType=DECIMAL},
+      delivery_all_time = #{deliveryAllTime,jdbcType=TIMESTAMP},
+      is_erpcancel = #{isErpcancel,jdbcType=DECIMAL},
+      rate = #{rate,jdbcType=DECIMAL},
+      complete_time = #{completeTime,jdbcType=TIMESTAMP},
+      outside_orderno = #{outsideOrderno,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=VARCHAR},
+      supplier_name = #{supplierName,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      pay_flag = #{payFlag,jdbcType=VARCHAR},
+      pay_id = #{payId,jdbcType=VARCHAR},
+      money_release_state = #{moneyReleaseState,jdbcType=VARCHAR},
+      money_release = #{moneyRelease,jdbcType=DECIMAL},
+      margin_pay_flag = #{marginPayFlag,jdbcType=VARCHAR},
+      margin_pay_money = #{marginPayMoney,jdbcType=DECIMAL},
+      invoice_amount_notyet = #{invoiceAmountNotyet,jdbcType=DECIMAL},
+      invoice_amount = #{invoiceAmount,jdbcType=DECIMAL},
+      is_invoice_end = #{isInvoiceEnd,jdbcType=DECIMAL},
+      is_pingtai = #{isPingtai,jdbcType=INTEGER},
+      actual_amt = #{actualAmt,jdbcType=DECIMAL}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="orderId != null">
+      and order_id = #{orderId,jdbcType=VARCHAR}
+    </if>
+    <if test="contractCustomerId != null">
+      and contract_customer_id = #{contractCustomerId,jdbcType=VARCHAR}
+    </if>
+    <if test="customerId != null">
+      and customer_id = #{customerId,jdbcType=VARCHAR}
+    </if>
+    <if test="orderNo != null">
+      and order_no = #{orderNo,jdbcType=CHAR}
+    </if>
+    <if test="erpSoNo != null">
+      and erp_so_no = #{erpSoNo,jdbcType=VARCHAR}
+    </if>
+    <if test="storeId != null">
+      and store_id = #{storeId,jdbcType=VARCHAR}
+    </if>
+    <if test="storeName != null">
+      and store_name = #{storeName,jdbcType=VARCHAR}
+    </if>
+    <if test="costCenterId != null">
+      and cost_center_id = #{costCenterId,jdbcType=VARCHAR}
+    </if>
+    <if test="orderType != null">
+      and order_type = #{orderType,jdbcType=DECIMAL}
+    </if>
+    <if test="orderStatus != null">
+      and order_status = #{orderStatus,jdbcType=DECIMAL}
+    </if>
+    <if test="oldOrderStatus != null">
+      and old_order_status = #{oldOrderStatus,jdbcType=DECIMAL}
+    </if>
+    <if test="auditResult != null">
+      and audit_result = #{auditResult,jdbcType=DECIMAL}
+    </if>
+    <if test="orderAmt != null">
+      and order_amt = #{orderAmt,jdbcType=DECIMAL}
+    </if>
+    <if test="currentId != null">
+      and current_id = #{currentId,jdbcType=VARCHAR}
+    </if>
+    <if test="addressId != null">
+      and address_id = #{addressId,jdbcType=VARCHAR}
+    </if>
+    <if test="address != null">
+      and address = #{address,jdbcType=VARCHAR}
+    </if>
+    <if test="linkman != null">
+      and linkman = #{linkman,jdbcType=VARCHAR}
+    </if>
+    <if test="telephone != null">
+      and telephone = #{telephone,jdbcType=VARCHAR}
+    </if>
+    <if test="linkphone != null">
+      and linkphone = #{linkphone,jdbcType=VARCHAR}
+    </if>
+    <if test="deliveryAmt != null">
+      and delivery_amt = #{deliveryAmt,jdbcType=DECIMAL}
+    </if>
+    <if test="ladingWay != null">
+      and lading_way = #{ladingWay,jdbcType=DECIMAL}
+    </if>
+    <if test="payWay != null">
+      and pay_way = #{payWay,jdbcType=DECIMAL}
+    </if>
+    <if test="orderDate != null">
+      and order_date = #{orderDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="payTime != null">
+      and pay_time = #{payTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="deliveryTime != null">
+      and delivery_time = #{deliveryTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="deliveryPeriod != null">
+      and delivery_period = #{deliveryPeriod,jdbcType=DECIMAL}
+    </if>
+    <if test="receivedTime != null">
+      and received_time = #{receivedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="isPayback != null">
+      and is_payback = #{isPayback,jdbcType=DECIMAL}
+    </if>
+    <if test="paybackTime != null">
+      and payback_time = #{paybackTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="paybackAmt != null">
+      and payback_amt = #{paybackAmt,jdbcType=DECIMAL}
+    </if>
+    <if test="carrierName != null">
+      and carrier_name = #{carrierName,jdbcType=VARCHAR}
+    </if>
+    <if test="wbNo != null">
+      and wb_no = #{wbNo,jdbcType=VARCHAR}
+    </if>
+    <if test="orderRemark != null">
+      and order_remark = #{orderRemark,jdbcType=VARCHAR}
+    </if>
+    <if test="storeRemark != null">
+      and store_remark = #{storeRemark,jdbcType=VARCHAR}
+    </if>
+    <if test="applyContent != null">
+      and apply_content = #{applyContent,jdbcType=VARCHAR}
+    </if>
+    <if test="invoiceType != null">
+      and invoice_type = #{invoiceType,jdbcType=DECIMAL}
+    </if>
+    <if test="invoiceTitle != null">
+      and invoice_title = #{invoiceTitle,jdbcType=VARCHAR}
+    </if>
+    <if test="isAudited != null">
+      and is_audited = #{isAudited,jdbcType=DECIMAL}
+    </if>
+    <if test="orderAuditId != null">
+      and order_audit_id = #{orderAuditId,jdbcType=VARCHAR}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+    <if test="province != null">
+      and province = #{province,jdbcType=VARCHAR}
+    </if>
+    <if test="city != null">
+      and city = #{city,jdbcType=VARCHAR}
+    </if>
+    <if test="country != null">
+      and country = #{country,jdbcType=VARCHAR}
+    </if>
+    <if test="invoiceId != null">
+      and invoice_id = #{invoiceId,jdbcType=VARCHAR}
+    </if>
+    <if test="pushtoerp != null">
+      and pushtoerp = #{pushtoerp,jdbcType=DECIMAL}
+    </if>
+    <if test="invoiceStatus != null">
+      and invoice_status = #{invoiceStatus,jdbcType=DECIMAL}
+    </if>
+    <if test="deliveryAllTime != null">
+      and delivery_all_time = #{deliveryAllTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="isErpcancel != null">
+      and is_erpcancel = #{isErpcancel,jdbcType=DECIMAL}
+    </if>
+    <if test="rate != null">
+      and rate = #{rate,jdbcType=DECIMAL}
+    </if>
+    <if test="completeTime != null">
+      and complete_time = #{completeTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="outsideOrderno != null">
+      and outside_orderno = #{outsideOrderno,jdbcType=VARCHAR}
+    </if>
+    <if test="supplierId != null">
+      and supplier_id = #{supplierId,jdbcType=VARCHAR}
+    </if>
+    <if test="supplierName != null">
+      and supplier_name = #{supplierName,jdbcType=VARCHAR}
+    </if>
+    <if test="payType != null">
+      and pay_type = #{payType,jdbcType=VARCHAR}
+    </if>
+    <if test="payFlag != null">
+      and pay_flag = #{payFlag,jdbcType=VARCHAR}
+    </if>
+    <if test="payId != null">
+      and pay_id = #{payId,jdbcType=VARCHAR}
+    </if>
+    <if test="moneyReleaseState != null">
+      and money_release_state = #{moneyReleaseState,jdbcType=VARCHAR}
+    </if>
+    <if test="moneyRelease != null">
+      and money_release = #{moneyRelease,jdbcType=DECIMAL}
+    </if>
+    <if test="marginPayFlag != null">
+      and margin_pay_flag = #{marginPayFlag,jdbcType=VARCHAR}
+    </if>
+    <if test="marginPayMoney != null">
+      and margin_pay_money = #{marginPayMoney,jdbcType=DECIMAL}
+    </if>
+    <if test="invoiceAmountNotyet != null">
+      and invoice_amount_notyet = #{invoiceAmountNotyet,jdbcType=DECIMAL}
+    </if>
+    <if test="invoiceAmount != null">
+      and invoice_amount = #{invoiceAmount,jdbcType=DECIMAL}
+    </if>
+    <if test="isInvoiceEnd != null">
+      and is_invoice_end = #{isInvoiceEnd,jdbcType=DECIMAL}
+    </if>
+    <if test="isPingtai != null">
+      and is_pingtai = #{isPingtai,jdbcType=INTEGER}
+    </if>
+    <if test="actualAmt != null">
+      and actual_amt = #{actualAmt,jdbcType=DECIMAL}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmOdOrders" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_od_orders
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmGdGoodsMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmGdGoods">
+    <id column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="brand_id" jdbcType="VARCHAR" property="brandId" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="goods_type" jdbcType="DECIMAL" property="goodsType" />
+    <result column="county_id" jdbcType="VARCHAR" property="countyId" />
+    <result column="goods_code" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="key_words" jdbcType="VARCHAR" property="keyWords" />
+    <result column="goods_pic" jdbcType="VARCHAR" property="goodsPic" />
+    <result column="gooods_desc" jdbcType="VARCHAR" property="gooodsDesc" />
+    <result column="up_act" jdbcType="DECIMAL" property="upAct" />
+    <result column="forbid_sale" jdbcType="DECIMAL" property="forbidSale" />
+    <result column="forbid_cause" jdbcType="VARCHAR" property="forbidCause" />
+    <result column="unit" jdbcType="DECIMAL" property="unit" />
+    <result column="min_pack" jdbcType="DECIMAL" property="minPack" />
+    <result column="current_id" jdbcType="VARCHAR" property="currentId" />
+    <result column="price_a" jdbcType="DECIMAL" property="priceA" />
+    <result column="price_b" jdbcType="DECIMAL" property="priceB" />
+    <result column="price_c" jdbcType="DECIMAL" property="priceC" />
+    <result column="visit_amount" jdbcType="DECIMAL" property="visitAmount" />
+    <result column="sales_volume" jdbcType="DECIMAL" property="salesVolume" />
+    <result column="inventory" jdbcType="DECIMAL" property="inventory" />
+    <result column="score" jdbcType="DECIMAL" property="score" />
+    <result column="is_lack" jdbcType="DECIMAL" property="isLack" />
+    <result column="onact_time" jdbcType="TIMESTAMP" property="onactTime" />
+    <result column="offact_time" jdbcType="TIMESTAMP" property="offactTime" />
+    <result column="forbid_time" jdbcType="TIMESTAMP" property="forbidTime" />
+    <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+    <result column="barcode" jdbcType="VARCHAR" property="barcode" />
+    <result column="product_area" jdbcType="VARCHAR" property="productArea" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="ware_qd" jdbcType="VARCHAR" property="wareQd" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+    <result column="sys_goods_code" jdbcType="VARCHAR" property="sysGoodsCode" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.shopping.model.EmGdGoodsWithBLOBs">
+    <result column="goods_detail" jdbcType="LONGVARCHAR" property="goodsDetail" />
+    <result column="attr_name_value" jdbcType="LONGVARCHAR" property="attrNameValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_id, brand_id, category_id, store_id, store_name, goods_type, county_id, goods_code, 
+    goods_name, key_words, goods_pic, gooods_desc, up_act, forbid_sale, forbid_cause, 
+    unit, min_pack, current_id, price_a, price_b, price_c, visit_amount, sales_volume, 
+    inventory, score, is_lack, onact_time, offact_time, forbid_time, is_inactive, created_time, 
+    created_by, updated_time, updated_by, version, barcode, product_area, model, ware_qd, 
+    supplier_id, supplier_name, sys_goods_code
+  </sql>
+  <sql id="Blob_Column_List">
+    goods_detail, attr_name_value
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from em_gd_goods
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_gd_goods
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmGdGoodsWithBLOBs">
+    insert into em_gd_goods (goods_id, brand_id, category_id, 
+      store_id, store_name, goods_type, 
+      county_id, goods_code, goods_name, 
+      key_words, goods_pic, gooods_desc, 
+      up_act, forbid_sale, forbid_cause, 
+      unit, min_pack, current_id, 
+      price_a, price_b, price_c, 
+      visit_amount, sales_volume, inventory, 
+      score, is_lack, onact_time, 
+      offact_time, forbid_time, is_inactive, 
+      created_time, created_by, updated_time, 
+      updated_by, version, barcode, 
+      product_area, model, ware_qd, 
+      supplier_id, supplier_name, sys_goods_code, 
+      goods_detail, attr_name_value)
+    values (#{goodsId,jdbcType=VARCHAR}, #{brandId,jdbcType=VARCHAR}, #{categoryId,jdbcType=VARCHAR}, 
+      #{storeId,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, #{goodsType,jdbcType=DECIMAL}, 
+      #{countyId,jdbcType=VARCHAR}, #{goodsCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
+      #{keyWords,jdbcType=VARCHAR}, #{goodsPic,jdbcType=VARCHAR}, #{gooodsDesc,jdbcType=VARCHAR}, 
+      #{upAct,jdbcType=DECIMAL}, #{forbidSale,jdbcType=DECIMAL}, #{forbidCause,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=DECIMAL}, #{minPack,jdbcType=DECIMAL}, #{currentId,jdbcType=VARCHAR}, 
+      #{priceA,jdbcType=DECIMAL}, #{priceB,jdbcType=DECIMAL}, #{priceC,jdbcType=DECIMAL}, 
+      #{visitAmount,jdbcType=DECIMAL}, #{salesVolume,jdbcType=DECIMAL}, #{inventory,jdbcType=DECIMAL}, 
+      #{score,jdbcType=DECIMAL}, #{isLack,jdbcType=DECIMAL}, #{onactTime,jdbcType=TIMESTAMP}, 
+      #{offactTime,jdbcType=TIMESTAMP}, #{forbidTime,jdbcType=TIMESTAMP}, #{isInactive,jdbcType=DECIMAL}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{version,jdbcType=DECIMAL}, #{barcode,jdbcType=VARCHAR}, 
+      #{productArea,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{wareQd,jdbcType=VARCHAR}, 
+      #{supplierId,jdbcType=VARCHAR}, #{supplierName,jdbcType=VARCHAR}, #{sysGoodsCode,jdbcType=VARCHAR}, 
+      #{goodsDetail,jdbcType=LONGVARCHAR}, #{attrNameValue,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmGdGoodsWithBLOBs">
+    insert into em_gd_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="goodsType != null">
+        goods_type,
+      </if>
+      <if test="countyId != null">
+        county_id,
+      </if>
+      <if test="goodsCode != null">
+        goods_code,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="keyWords != null">
+        key_words,
+      </if>
+      <if test="goodsPic != null">
+        goods_pic,
+      </if>
+      <if test="gooodsDesc != null">
+        gooods_desc,
+      </if>
+      <if test="upAct != null">
+        up_act,
+      </if>
+      <if test="forbidSale != null">
+        forbid_sale,
+      </if>
+      <if test="forbidCause != null">
+        forbid_cause,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="minPack != null">
+        min_pack,
+      </if>
+      <if test="currentId != null">
+        current_id,
+      </if>
+      <if test="priceA != null">
+        price_a,
+      </if>
+      <if test="priceB != null">
+        price_b,
+      </if>
+      <if test="priceC != null">
+        price_c,
+      </if>
+      <if test="visitAmount != null">
+        visit_amount,
+      </if>
+      <if test="salesVolume != null">
+        sales_volume,
+      </if>
+      <if test="inventory != null">
+        inventory,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="isLack != null">
+        is_lack,
+      </if>
+      <if test="onactTime != null">
+        onact_time,
+      </if>
+      <if test="offactTime != null">
+        offact_time,
+      </if>
+      <if test="forbidTime != null">
+        forbid_time,
+      </if>
+      <if test="isInactive != null">
+        is_inactive,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="barcode != null">
+        barcode,
+      </if>
+      <if test="productArea != null">
+        product_area,
+      </if>
+      <if test="model != null">
+        model,
+      </if>
+      <if test="wareQd != null">
+        ware_qd,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="supplierName != null">
+        supplier_name,
+      </if>
+      <if test="sysGoodsCode != null">
+        sys_goods_code,
+      </if>
+      <if test="goodsDetail != null">
+        goods_detail,
+      </if>
+      <if test="attrNameValue != null">
+        attr_name_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null">
+        #{goodsType,jdbcType=DECIMAL},
+      </if>
+      <if test="countyId != null">
+        #{countyId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="keyWords != null">
+        #{keyWords,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPic != null">
+        #{goodsPic,jdbcType=VARCHAR},
+      </if>
+      <if test="gooodsDesc != null">
+        #{gooodsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="upAct != null">
+        #{upAct,jdbcType=DECIMAL},
+      </if>
+      <if test="forbidSale != null">
+        #{forbidSale,jdbcType=DECIMAL},
+      </if>
+      <if test="forbidCause != null">
+        #{forbidCause,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=DECIMAL},
+      </if>
+      <if test="minPack != null">
+        #{minPack,jdbcType=DECIMAL},
+      </if>
+      <if test="currentId != null">
+        #{currentId,jdbcType=VARCHAR},
+      </if>
+      <if test="priceA != null">
+        #{priceA,jdbcType=DECIMAL},
+      </if>
+      <if test="priceB != null">
+        #{priceB,jdbcType=DECIMAL},
+      </if>
+      <if test="priceC != null">
+        #{priceC,jdbcType=DECIMAL},
+      </if>
+      <if test="visitAmount != null">
+        #{visitAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="salesVolume != null">
+        #{salesVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="isLack != null">
+        #{isLack,jdbcType=DECIMAL},
+      </if>
+      <if test="onactTime != null">
+        #{onactTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="offactTime != null">
+        #{offactTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="forbidTime != null">
+        #{forbidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isInactive != null">
+        #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="barcode != null">
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productArea != null">
+        #{productArea,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="wareQd != null">
+        #{wareQd,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierName != null">
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysGoodsCode != null">
+        #{sysGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDetail != null">
+        #{goodsDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attrNameValue != null">
+        #{attrNameValue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmGdGoodsWithBLOBs">
+    update em_gd_goods
+    <set>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null">
+        goods_type = #{goodsType,jdbcType=DECIMAL},
+      </if>
+      <if test="countyId != null">
+        county_id = #{countyId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null">
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="keyWords != null">
+        key_words = #{keyWords,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPic != null">
+        goods_pic = #{goodsPic,jdbcType=VARCHAR},
+      </if>
+      <if test="gooodsDesc != null">
+        gooods_desc = #{gooodsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="upAct != null">
+        up_act = #{upAct,jdbcType=DECIMAL},
+      </if>
+      <if test="forbidSale != null">
+        forbid_sale = #{forbidSale,jdbcType=DECIMAL},
+      </if>
+      <if test="forbidCause != null">
+        forbid_cause = #{forbidCause,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=DECIMAL},
+      </if>
+      <if test="minPack != null">
+        min_pack = #{minPack,jdbcType=DECIMAL},
+      </if>
+      <if test="currentId != null">
+        current_id = #{currentId,jdbcType=VARCHAR},
+      </if>
+      <if test="priceA != null">
+        price_a = #{priceA,jdbcType=DECIMAL},
+      </if>
+      <if test="priceB != null">
+        price_b = #{priceB,jdbcType=DECIMAL},
+      </if>
+      <if test="priceC != null">
+        price_c = #{priceC,jdbcType=DECIMAL},
+      </if>
+      <if test="visitAmount != null">
+        visit_amount = #{visitAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="salesVolume != null">
+        sales_volume = #{salesVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="isLack != null">
+        is_lack = #{isLack,jdbcType=DECIMAL},
+      </if>
+      <if test="onactTime != null">
+        onact_time = #{onactTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="offactTime != null">
+        offact_time = #{offactTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="forbidTime != null">
+        forbid_time = #{forbidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isInactive != null">
+        is_inactive = #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="barcode != null">
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productArea != null">
+        product_area = #{productArea,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="wareQd != null">
+        ware_qd = #{wareQd,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierName != null">
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysGoodsCode != null">
+        sys_goods_code = #{sysGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDetail != null">
+        goods_detail = #{goodsDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attrNameValue != null">
+        attr_name_value = #{attrNameValue,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shopping.model.EmGdGoodsWithBLOBs">
+    update em_gd_goods
+    set brand_id = #{brandId,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      goods_type = #{goodsType,jdbcType=DECIMAL},
+      county_id = #{countyId,jdbcType=VARCHAR},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      key_words = #{keyWords,jdbcType=VARCHAR},
+      goods_pic = #{goodsPic,jdbcType=VARCHAR},
+      gooods_desc = #{gooodsDesc,jdbcType=VARCHAR},
+      up_act = #{upAct,jdbcType=DECIMAL},
+      forbid_sale = #{forbidSale,jdbcType=DECIMAL},
+      forbid_cause = #{forbidCause,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=DECIMAL},
+      min_pack = #{minPack,jdbcType=DECIMAL},
+      current_id = #{currentId,jdbcType=VARCHAR},
+      price_a = #{priceA,jdbcType=DECIMAL},
+      price_b = #{priceB,jdbcType=DECIMAL},
+      price_c = #{priceC,jdbcType=DECIMAL},
+      visit_amount = #{visitAmount,jdbcType=DECIMAL},
+      sales_volume = #{salesVolume,jdbcType=DECIMAL},
+      inventory = #{inventory,jdbcType=DECIMAL},
+      score = #{score,jdbcType=DECIMAL},
+      is_lack = #{isLack,jdbcType=DECIMAL},
+      onact_time = #{onactTime,jdbcType=TIMESTAMP},
+      offact_time = #{offactTime,jdbcType=TIMESTAMP},
+      forbid_time = #{forbidTime,jdbcType=TIMESTAMP},
+      is_inactive = #{isInactive,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=DECIMAL},
+      barcode = #{barcode,jdbcType=VARCHAR},
+      product_area = #{productArea,jdbcType=VARCHAR},
+      model = #{model,jdbcType=VARCHAR},
+      ware_qd = #{wareQd,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=VARCHAR},
+      supplier_name = #{supplierName,jdbcType=VARCHAR},
+      sys_goods_code = #{sysGoodsCode,jdbcType=VARCHAR},
+      goods_detail = #{goodsDetail,jdbcType=LONGVARCHAR},
+      attr_name_value = #{attrNameValue,jdbcType=LONGVARCHAR}
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmGdGoods">
+    update em_gd_goods
+    set brand_id = #{brandId,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      goods_type = #{goodsType,jdbcType=DECIMAL},
+      county_id = #{countyId,jdbcType=VARCHAR},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      key_words = #{keyWords,jdbcType=VARCHAR},
+      goods_pic = #{goodsPic,jdbcType=VARCHAR},
+      gooods_desc = #{gooodsDesc,jdbcType=VARCHAR},
+      up_act = #{upAct,jdbcType=DECIMAL},
+      forbid_sale = #{forbidSale,jdbcType=DECIMAL},
+      forbid_cause = #{forbidCause,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=DECIMAL},
+      min_pack = #{minPack,jdbcType=DECIMAL},
+      current_id = #{currentId,jdbcType=VARCHAR},
+      price_a = #{priceA,jdbcType=DECIMAL},
+      price_b = #{priceB,jdbcType=DECIMAL},
+      price_c = #{priceC,jdbcType=DECIMAL},
+      visit_amount = #{visitAmount,jdbcType=DECIMAL},
+      sales_volume = #{salesVolume,jdbcType=DECIMAL},
+      inventory = #{inventory,jdbcType=DECIMAL},
+      score = #{score,jdbcType=DECIMAL},
+      is_lack = #{isLack,jdbcType=DECIMAL},
+      onact_time = #{onactTime,jdbcType=TIMESTAMP},
+      offact_time = #{offactTime,jdbcType=TIMESTAMP},
+      forbid_time = #{forbidTime,jdbcType=TIMESTAMP},
+      is_inactive = #{isInactive,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=DECIMAL},
+      barcode = #{barcode,jdbcType=VARCHAR},
+      product_area = #{productArea,jdbcType=VARCHAR},
+      model = #{model,jdbcType=VARCHAR},
+      ware_qd = #{wareQd,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=VARCHAR},
+      supplier_name = #{supplierName,jdbcType=VARCHAR},
+      sys_goods_code = #{sysGoodsCode,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="goodsId != null">
+      and goods_id = #{goodsId,jdbcType=VARCHAR}
+    </if>
+    <if test="brandId != null">
+      and brand_id = #{brandId,jdbcType=VARCHAR}
+    </if>
+    <if test="categoryId != null">
+      and category_id = #{categoryId,jdbcType=VARCHAR}
+    </if>
+    <if test="storeId != null">
+      and store_id = #{storeId,jdbcType=VARCHAR}
+    </if>
+    <if test="storeName != null">
+      and store_name = #{storeName,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsType != null">
+      and goods_type = #{goodsType,jdbcType=DECIMAL}
+    </if>
+    <if test="countyId != null">
+      and county_id = #{countyId,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsCode != null">
+      and goods_code = #{goodsCode,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsName != null">
+      and goods_name = #{goodsName,jdbcType=VARCHAR}
+    </if>
+    <if test="keyWords != null">
+      and key_words = #{keyWords,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsPic != null">
+      and goods_pic = #{goodsPic,jdbcType=VARCHAR}
+    </if>
+    <if test="gooodsDesc != null">
+      and gooods_desc = #{gooodsDesc,jdbcType=VARCHAR}
+    </if>
+    <if test="upAct != null">
+      and up_act = #{upAct,jdbcType=DECIMAL}
+    </if>
+    <if test="forbidSale != null">
+      and forbid_sale = #{forbidSale,jdbcType=DECIMAL}
+    </if>
+    <if test="forbidCause != null">
+      and forbid_cause = #{forbidCause,jdbcType=VARCHAR}
+    </if>
+    <if test="unit != null">
+      and unit = #{unit,jdbcType=DECIMAL}
+    </if>
+    <if test="minPack != null">
+      and min_pack = #{minPack,jdbcType=DECIMAL}
+    </if>
+    <if test="currentId != null">
+      and current_id = #{currentId,jdbcType=VARCHAR}
+    </if>
+    <if test="priceA != null">
+      and price_a = #{priceA,jdbcType=DECIMAL}
+    </if>
+    <if test="priceB != null">
+      and price_b = #{priceB,jdbcType=DECIMAL}
+    </if>
+    <if test="priceC != null">
+      and price_c = #{priceC,jdbcType=DECIMAL}
+    </if>
+    <if test="visitAmount != null">
+      and visit_amount = #{visitAmount,jdbcType=DECIMAL}
+    </if>
+    <if test="salesVolume != null">
+      and sales_volume = #{salesVolume,jdbcType=DECIMAL}
+    </if>
+    <if test="inventory != null">
+      and inventory = #{inventory,jdbcType=DECIMAL}
+    </if>
+    <if test="score != null">
+      and score = #{score,jdbcType=DECIMAL}
+    </if>
+    <if test="isLack != null">
+      and is_lack = #{isLack,jdbcType=DECIMAL}
+    </if>
+    <if test="onactTime != null">
+      and onact_time = #{onactTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="offactTime != null">
+      and offact_time = #{offactTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="forbidTime != null">
+      and forbid_time = #{forbidTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="isInactive != null">
+      and is_inactive = #{isInactive,jdbcType=DECIMAL}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+    <if test="barcode != null">
+      and barcode = #{barcode,jdbcType=VARCHAR}
+    </if>
+    <if test="productArea != null">
+      and product_area = #{productArea,jdbcType=VARCHAR}
+    </if>
+    <if test="model != null">
+      and model = #{model,jdbcType=VARCHAR}
+    </if>
+    <if test="wareQd != null">
+      and ware_qd = #{wareQd,jdbcType=VARCHAR}
+    </if>
+    <if test="supplierId != null">
+      and supplier_id = #{supplierId,jdbcType=VARCHAR}
+    </if>
+    <if test="supplierName != null">
+      and supplier_name = #{supplierName,jdbcType=VARCHAR}
+    </if>
+    <if test="sysGoodsCode != null">
+      and sys_goods_code = #{sysGoodsCode,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsDetail != null">
+      and goods_detail = #{goodsDetail,jdbcType=LONGVARCHAR}
+    </if>
+    <if test="attrNameValue != null">
+      and attr_name_value = #{attrNameValue,jdbcType=LONGVARCHAR}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmGdGoods" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from em_gd_goods
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

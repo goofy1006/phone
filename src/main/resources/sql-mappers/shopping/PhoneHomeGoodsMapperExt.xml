@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.PhoneHomeGoodsMapperExt">
+    <resultMap id="HomeGoodsJsonBeanResultMap" type="com.shopping.model.jsonbean.PhoneHomeGoodsJsonBean">
+        <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+        <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+        <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+        <result column="tree_code" jdbcType="VARCHAR" property="treeCode" />
+        <result column="order_no" jdbcType="INTEGER" property="orderNo" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+        <result column="version" jdbcType="DECIMAL" property="version" />
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+        <result column="contract_goods_name" jdbcType="VARCHAR" property="contractGoodsName" />
+        <result column="contract_price" jdbcType="DECIMAL" property="contractPrice" />
+        <result column="price_b" jdbcType="DECIMAL" property="priceB" />
+        <result column="goods_pic" jdbcType="VARCHAR" property="goodsPic" />
+    </resultMap>
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+    <select id="selectListHomeGoods" parameterType="java.lang.String" resultMap="HomeGoodsJsonBeanResultMap">
+        select a.uuid, a.category_id, a.goods_id, a.tree_code, a.order_no, a.status, a.created_time, a.created_by,
+        a.updated_time, a.update_by, a.version,b.category_name,c.goods_pic,c.price_b,d.contract_goods_name,d.contract_price
+        from phone_home_goods a LEFT JOIN em_cm_gd_category b on a.category_id = b.catgory_id
+        left join em_cm_contract_goods d on a.goods_id = d.contract_goods_id
+        left join em_gd_goods c on d.goods_id = c.goods_id
+        where 1=1
+        and a.category_id = #{categoryId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectCountCategory" resultType="java.lang.String">
+        select DISTINCT(category_id) as category from phone_home_goods
+    </select>
+</mapper>

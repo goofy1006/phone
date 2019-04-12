@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmOdCartMapperExt">
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+    <resultMap id="CartResultMap" type="com.shopping.model.jsonbean.EmOdCartJsonBean">
+        <id column="cart_id" jdbcType="VARCHAR" property="cartId" />
+        <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+        <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+        <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+        <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+        <result column="count" jdbcType="DECIMAL" property="count" />
+        <result column="unit" jdbcType="DECIMAL" property="unit" />
+        <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="version" jdbcType="DECIMAL" property="version" />
+
+        <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+        <result column="contract_goods_name" jdbcType="VARCHAR" property="categoryName" />
+        <result column="goods_pic" jdbcType="VARCHAR" property="goodsPic" />
+        <result column="contract_price" jdbcType="DECIMAL" property="goodsPrice" />
+    </resultMap>
+
+    <select id="selectListCart" parameterType="java.util.Map" resultMap="CartResultMap">
+select a.cart_id, a.customer_id, a.goods_id, a.goods_name, a.store_id, a.store_name, a.count, a.unit, a.add_time,
+    a.created_time, a.created_by, a.updated_time, a.updated_by, a.version,
+    b.contract_goods_id, b.contract_price,b.contract_goods_name,c.category_name,d.goods_pic from em_od_cart a
+left join em_cm_contract_goods b on a.goods_id = b.contract_goods_id
+left join em_gd_goods d on b.goods_id = d.goods_id
+left join em_cm_gd_category c on b.catgory_id = c.catgory_id
+where a.customer_id = #{customerId,jdbcType = VARCHAR}
+<if test="goodsId != null and goodsId != ''">
+ and a.goods_id = #{goodsId,jdbcType = VARCHAR}
+</if>
+    </select>
+
+    <update id="editCartGoodsNum" parameterType="java.util.Map">
+update em_od_cart set count = #{num,jdbcType = DECIMAL} where cart_id = #{cartId,jdbcType = VARCHAR}
+
+    </update>
+</mapper>

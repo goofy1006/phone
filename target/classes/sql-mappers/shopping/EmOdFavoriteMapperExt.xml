@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmOdFavoriteMapperExt">
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+    <resultMap id="FavoriteResultMap" type="com.shopping.model.jsonbean.EmOdFavoriteJsonBean">
+        <id column="favorite_id" jdbcType="VARCHAR" property="favoriteId" />
+        <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+        <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+        <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+        <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+        <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+
+        <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+        <result column="contract_goods_name" jdbcType="VARCHAR" property="categoryName" />
+        <result column="goods_pic" jdbcType="VARCHAR" property="goodsPic" />
+        <result column="contract_price" jdbcType="DECIMAL" property="goodsPrice" />
+    </resultMap>
+
+    <select id="selectListFavorite" parameterType="java.util.Map" resultMap="FavoriteResultMap">
+select   a.favorite_id, a.customer_id, a.goods_id, a.store_id, a.store_name, a.add_time, a.created_time,
+          a.created_by, b.contract_goods_id, b.contract_price,b.contract_goods_name,c.category_name,d.goods_pic
+from     em_od_favorite a
+left join em_cm_contract_goods b on a.goods_id = b.contract_goods_id
+left join em_gd_goods d on b.goods_id = d.goods_id
+left join em_cm_gd_category c on b.catgory_id = c.catgory_id
+where a.customer_id = #{customerId,jdbcType = VARCHAR}
+     <if test="goodsId != null and goodsId != ''">
+            and a.goods_id = #{goodsId,jdbcType = VARCHAR}
+      </if>
+    </select>
+</mapper>

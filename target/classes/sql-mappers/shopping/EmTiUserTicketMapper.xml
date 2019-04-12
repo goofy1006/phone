@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmTiUserTicketMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmTiUserTicket">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="ticket_id" jdbcType="VARCHAR" property="ticketId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="efstart_time" jdbcType="TIMESTAMP" property="efstartTime" />
+    <result column="efend_time" jdbcType="TIMESTAMP" property="efendTime" />
+    <result column="is_use" jdbcType="INTEGER" property="isUse" />
+    <result column="use_time" jdbcType="TIMESTAMP" property="useTime" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="deduction_amt" jdbcType="DECIMAL" property="deductionAmt" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ticket_id, user_id, efstart_time, efend_time, is_use, use_time, order_no, deduction_amt, 
+    created_by, created_time, updated_by, updated_time, VERSION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_ti_user_ticket
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_ti_user_ticket
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmTiUserTicket">
+    insert into em_ti_user_ticket (id, ticket_id, user_id, 
+      efstart_time, efend_time, is_use, 
+      use_time, order_no, deduction_amt, 
+      created_by, created_time, updated_by, 
+      updated_time, VERSION)
+    values (#{id,jdbcType=VARCHAR}, #{ticketId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{efstartTime,jdbcType=TIMESTAMP}, #{efendTime,jdbcType=TIMESTAMP}, #{isUse,jdbcType=INTEGER}, 
+      #{useTime,jdbcType=TIMESTAMP}, #{orderNo,jdbcType=VARCHAR}, #{deductionAmt,jdbcType=DECIMAL}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmTiUserTicket">
+    insert into em_ti_user_ticket
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ticketId != null">
+        ticket_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="efstartTime != null">
+        efstart_time,
+      </if>
+      <if test="efendTime != null">
+        efend_time,
+      </if>
+      <if test="isUse != null">
+        is_use,
+      </if>
+      <if test="useTime != null">
+        use_time,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="deductionAmt != null">
+        deduction_amt,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketId != null">
+        #{ticketId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="efstartTime != null">
+        #{efstartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="efendTime != null">
+        #{efendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUse != null">
+        #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="useTime != null">
+        #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deductionAmt != null">
+        #{deductionAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmTiUserTicket">
+    update em_ti_user_ticket
+    <set>
+      <if test="ticketId != null">
+        ticket_id = #{ticketId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="efstartTime != null">
+        efstart_time = #{efstartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="efendTime != null">
+        efend_time = #{efendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUse != null">
+        is_use = #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="useTime != null">
+        use_time = #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deductionAmt != null">
+        deduction_amt = #{deductionAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmTiUserTicket">
+    update em_ti_user_ticket
+    set ticket_id = #{ticketId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      efstart_time = #{efstartTime,jdbcType=TIMESTAMP},
+      efend_time = #{efendTime,jdbcType=TIMESTAMP},
+      is_use = #{isUse,jdbcType=INTEGER},
+      use_time = #{useTime,jdbcType=TIMESTAMP},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      deduction_amt = #{deductionAmt,jdbcType=DECIMAL},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="id != null">
+      and id = #{id,jdbcType=VARCHAR}
+    </if>
+    <if test="ticketId != null">
+      and ticket_id = #{ticketId,jdbcType=VARCHAR}
+    </if>
+    <if test="userId != null">
+      and user_id = #{userId,jdbcType=VARCHAR}
+    </if>
+    <if test="efstartTime != null">
+      and efstart_time = #{efstartTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="efendTime != null">
+      and efend_time = #{efendTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="isUse != null">
+      and is_use = #{isUse,jdbcType=INTEGER}
+    </if>
+    <if test="useTime != null">
+      and use_time = #{useTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="orderNo != null">
+      and order_no = #{orderNo,jdbcType=VARCHAR}
+    </if>
+    <if test="deductionAmt != null">
+      and deduction_amt = #{deductionAmt,jdbcType=DECIMAL}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="version != null">
+      and VERSION = #{version,jdbcType=INTEGER}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmTiUserTicket" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_ti_user_ticket
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

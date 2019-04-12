@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmOdOrderDetailMapperExt">
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+    <select id="selectByOrderId" parameterType="java.lang.String" resultType="com.shopping.model.jsonbean.EmOdOrderDetailJsonBean">
+        select
+          od.goods_id as goodsId,
+          od.count as count,
+          od.sales_price as salesPrice,
+          cg.contract_goods_name as contractGoodsName,
+          gg.goods_pic as goodsPic,
+          od.order_detail_id as orderDetailId
+        from em_od_order_detail od left join em_cm_contract_goods cg on od.goods_id = cg.contract_goods_id left join em_gd_goods gg on cg.goods_id = gg.goods_id
+        where od.order_id = #{orderId, jdbcType=VARCHAR}
+    </select>
+
+    <select id="goodsIdList" parameterType="java.lang.String" resultType="com.shopping.model.jsonbean.EmOdOrderDetailJsonBean">
+        select goods_id as goodsId from em_cm_contract_goods where contract_goods_id in
+          (select t.goods_id from em_od_order_detail t where t.order_id =
+            (select order_id from em_od_orders where order_no = #{orderNo,jdbcType = VARCHAR}))
+    </select>
+
+    <update id="updateGoodsSalesVol" parameterType="java.lang.String">
+    update em_cm_contract_goods set sales_account = (CASE WHEN sales_account IS null THEN 1 else sales_account+1 END) where goods_id = #{goodsId,jdbcType = VARCHAR}
+    </update>
+</mapper>

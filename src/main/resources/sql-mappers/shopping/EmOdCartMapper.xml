@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmOdCartMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmOdCart">
+    <id column="cart_id" jdbcType="VARCHAR" property="cartId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="count" jdbcType="DECIMAL" property="count" />
+    <result column="unit" jdbcType="DECIMAL" property="unit" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cart_id, customer_id, goods_id, goods_name, store_id, store_name, count, unit, add_time, 
+    created_time, created_by, updated_time, updated_by, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_od_cart
+    where cart_id = #{cartId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_od_cart
+    where cart_id = #{cartId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmOdCart">
+    insert into em_od_cart (cart_id, customer_id, goods_id, 
+      goods_name, store_id, store_name, 
+      count, unit, add_time, 
+      created_time, created_by, updated_time, 
+      updated_by, version)
+    values (#{cartId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{storeId,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, 
+      #{count,jdbcType=DECIMAL}, #{unit,jdbcType=DECIMAL}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{version,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmOdCart">
+    insert into em_od_cart
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cartId != null">
+        cart_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cartId != null">
+        #{cartId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmOdCart">
+    update em_od_cart
+    <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where cart_id = #{cartId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmOdCart">
+    update em_od_cart
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=VARCHAR},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      count = #{count,jdbcType=DECIMAL},
+      unit = #{unit,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=DECIMAL}
+    where cart_id = #{cartId,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="cartId != null">
+      and cart_id = #{cartId,jdbcType=VARCHAR}
+    </if>
+    <if test="customerId != null">
+      and customer_id = #{customerId,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsId != null">
+      and goods_id = #{goodsId,jdbcType=VARCHAR}
+    </if>
+    <if test="goodsName != null">
+      and goods_name = #{goodsName,jdbcType=VARCHAR}
+    </if>
+    <if test="storeId != null">
+      and store_id = #{storeId,jdbcType=VARCHAR}
+    </if>
+    <if test="storeName != null">
+      and store_name = #{storeName,jdbcType=VARCHAR}
+    </if>
+    <if test="count != null">
+      and count = #{count,jdbcType=DECIMAL}
+    </if>
+    <if test="unit != null">
+      and unit = #{unit,jdbcType=DECIMAL}
+    </if>
+    <if test="addTime != null">
+      and add_time = #{addTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmOdCart" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_od_cart
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

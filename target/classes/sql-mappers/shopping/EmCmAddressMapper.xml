@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmCmAddressMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmCmAddress">
+    <id column="address_id" jdbcType="VARCHAR" property="addressId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="address_name" jdbcType="VARCHAR" property="addressName" />
+    <result column="county" jdbcType="VARCHAR" property="county" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="linkman" jdbcType="VARCHAR" property="linkman" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="linkphone" jdbcType="VARCHAR" property="linkphone" />
+    <result column="is_default" jdbcType="DECIMAL" property="isDefault" />
+    <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    address_id, customer_id, address_name, county, province, city, country, address, 
+    linkman, telephone, linkphone, is_default, is_inactive, created_time, created_by, 
+    updated_time, updated_by, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_cm_address
+    where address_id = #{addressId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from em_cm_address
+    where address_id = #{addressId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmCmAddress">
+    insert into em_cm_address (address_id, customer_id, address_name, 
+      county, province, city, 
+      country, address, linkman, 
+      telephone, linkphone, is_default, 
+      is_inactive, created_time, created_by, 
+      updated_time, updated_by, version
+      )
+    values (#{addressId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{addressName,jdbcType=VARCHAR}, 
+      #{county,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{country,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{linkphone,jdbcType=VARCHAR}, #{isDefault,jdbcType=DECIMAL}, 
+      #{isInactive,jdbcType=DECIMAL}, #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{version,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmCmAddress">
+    insert into em_cm_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="addressName != null">
+        address_name,
+      </if>
+      <if test="county != null">
+        county,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="linkman != null">
+        linkman,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="linkphone != null">
+        linkphone,
+      </if>
+      <if test="isDefault != null">
+        is_default,
+      </if>
+      <if test="isInactive != null">
+        is_inactive,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressName != null">
+        #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null">
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkphone != null">
+        #{linkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=DECIMAL},
+      </if>
+      <if test="isInactive != null">
+        #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmCmAddress">
+    update em_cm_address
+    <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressName != null">
+        address_name = #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null">
+        linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkphone != null">
+        linkphone = #{linkphone,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        is_default = #{isDefault,jdbcType=DECIMAL},
+      </if>
+      <if test="isInactive != null">
+        is_inactive = #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where address_id = #{addressId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmCmAddress">
+    update em_cm_address
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      address_name = #{addressName,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      linkphone = #{linkphone,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=DECIMAL},
+      is_inactive = #{isInactive,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=DECIMAL}
+    where address_id = #{addressId,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="addressId != null">
+      and address_id = #{addressId,jdbcType=VARCHAR}
+    </if>
+    <if test="customerId != null">
+      and customer_id = #{customerId,jdbcType=VARCHAR}
+    </if>
+    <if test="addressName != null">
+      and address_name = #{addressName,jdbcType=VARCHAR}
+    </if>
+    <if test="county != null">
+      and county = #{county,jdbcType=VARCHAR}
+    </if>
+    <if test="province != null">
+      and province = #{province,jdbcType=VARCHAR}
+    </if>
+    <if test="city != null">
+      and city = #{city,jdbcType=VARCHAR}
+    </if>
+    <if test="country != null">
+      and country = #{country,jdbcType=VARCHAR}
+    </if>
+    <if test="address != null">
+      and address = #{address,jdbcType=VARCHAR}
+    </if>
+    <if test="linkman != null">
+      and linkman = #{linkman,jdbcType=VARCHAR}
+    </if>
+    <if test="telephone != null">
+      and telephone = #{telephone,jdbcType=VARCHAR}
+    </if>
+    <if test="linkphone != null">
+      and linkphone = #{linkphone,jdbcType=VARCHAR}
+    </if>
+    <if test="isDefault != null">
+      and is_default = #{isDefault,jdbcType=DECIMAL}
+    </if>
+    <if test="isInactive != null">
+      and is_inactive = #{isInactive,jdbcType=DECIMAL}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmCmAddress" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_cm_address
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

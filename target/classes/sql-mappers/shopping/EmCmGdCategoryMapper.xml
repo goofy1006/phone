@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmCmGdCategoryMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmCmGdCategory">
+    <id column="catgory_id" jdbcType="VARCHAR" property="catgoryId" />
+    <id column="contract_customer_id" jdbcType="VARCHAR" property="contractCustomerId" />
+    <result column="parent_category_id" jdbcType="VARCHAR" property="parentCategoryId" />
+    <result column="category_tree_code" jdbcType="VARCHAR" property="categoryTreeCode" />
+    <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="category_pic" jdbcType="VARCHAR" property="categoryPic" />
+    <result column="category_desc" jdbcType="VARCHAR" property="categoryDesc" />
+    <result column="category_order" jdbcType="DECIMAL" property="categoryOrder" />
+    <result column="is_show" jdbcType="DECIMAL" property="isShow" />
+    <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+    <result column="discount" jdbcType="DECIMAL" property="discount" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+    <result column="is_repair" jdbcType="DECIMAL" property="isRepair" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+    <result column="cover_discount" jdbcType="DECIMAL" property="coverDiscount" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.shopping.model.EmCmGdCategory">
+    <result column="floor_advert" jdbcType="LONGVARCHAR" property="floorAdvert" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    catgory_id, contract_customer_id, parent_category_id, category_tree_code, category_code, 
+    category_name, category_pic, category_desc, category_order, is_show, is_inactive, 
+    discount, created_time, created_by, updated_time, updated_by, version, is_repair, 
+    supplier_id, supplier_name, cover_discount
+  </sql>
+  <sql id="Blob_Column_List">
+    floor_advert
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.shopping.model.EmCmGdCategoryKey" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from em_cm_gd_category
+    where catgory_id = #{catgoryId,jdbcType=VARCHAR}
+      and contract_customer_id = #{contractCustomerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.shopping.model.EmCmGdCategoryKey">
+    delete from em_cm_gd_category
+    where catgory_id = #{catgoryId,jdbcType=VARCHAR}
+      and contract_customer_id = #{contractCustomerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmCmGdCategory">
+    insert into em_cm_gd_category (catgory_id, contract_customer_id, parent_category_id, 
+      category_tree_code, category_code, category_name, 
+      category_pic, category_desc, category_order, 
+      is_show, is_inactive, discount, 
+      created_time, created_by, updated_time, 
+      updated_by, version, is_repair, 
+      supplier_id, supplier_name, cover_discount, 
+      floor_advert)
+    values (#{catgoryId,jdbcType=VARCHAR}, #{contractCustomerId,jdbcType=VARCHAR}, #{parentCategoryId,jdbcType=VARCHAR}, 
+      #{categoryTreeCode,jdbcType=VARCHAR}, #{categoryCode,jdbcType=VARCHAR}, #{categoryName,jdbcType=VARCHAR}, 
+      #{categoryPic,jdbcType=VARCHAR}, #{categoryDesc,jdbcType=VARCHAR}, #{categoryOrder,jdbcType=DECIMAL}, 
+      #{isShow,jdbcType=DECIMAL}, #{isInactive,jdbcType=DECIMAL}, #{discount,jdbcType=DECIMAL}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{version,jdbcType=DECIMAL}, #{isRepair,jdbcType=DECIMAL}, 
+      #{supplierId,jdbcType=VARCHAR}, #{supplierName,jdbcType=VARCHAR}, #{coverDiscount,jdbcType=DECIMAL}, 
+      #{floorAdvert,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmCmGdCategory">
+    insert into em_cm_gd_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="catgoryId != null">
+        catgory_id,
+      </if>
+      <if test="contractCustomerId != null">
+        contract_customer_id,
+      </if>
+      <if test="parentCategoryId != null">
+        parent_category_id,
+      </if>
+      <if test="categoryTreeCode != null">
+        category_tree_code,
+      </if>
+      <if test="categoryCode != null">
+        category_code,
+      </if>
+      <if test="categoryName != null">
+        category_name,
+      </if>
+      <if test="categoryPic != null">
+        category_pic,
+      </if>
+      <if test="categoryDesc != null">
+        category_desc,
+      </if>
+      <if test="categoryOrder != null">
+        category_order,
+      </if>
+      <if test="isShow != null">
+        is_show,
+      </if>
+      <if test="isInactive != null">
+        is_inactive,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="isRepair != null">
+        is_repair,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="supplierName != null">
+        supplier_name,
+      </if>
+      <if test="coverDiscount != null">
+        cover_discount,
+      </if>
+      <if test="floorAdvert != null">
+        floor_advert,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="catgoryId != null">
+        #{catgoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractCustomerId != null">
+        #{contractCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCategoryId != null">
+        #{parentCategoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryTreeCode != null">
+        #{categoryTreeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCode != null">
+        #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryPic != null">
+        #{categoryPic,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryDesc != null">
+        #{categoryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryOrder != null">
+        #{categoryOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=DECIMAL},
+      </if>
+      <if test="isInactive != null">
+        #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="isRepair != null">
+        #{isRepair,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierName != null">
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="coverDiscount != null">
+        #{coverDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="floorAdvert != null">
+        #{floorAdvert,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmCmGdCategory">
+    update em_cm_gd_category
+    <set>
+      <if test="parentCategoryId != null">
+        parent_category_id = #{parentCategoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryTreeCode != null">
+        category_tree_code = #{categoryTreeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCode != null">
+        category_code = #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null">
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryPic != null">
+        category_pic = #{categoryPic,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryDesc != null">
+        category_desc = #{categoryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryOrder != null">
+        category_order = #{categoryOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="isShow != null">
+        is_show = #{isShow,jdbcType=DECIMAL},
+      </if>
+      <if test="isInactive != null">
+        is_inactive = #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="isRepair != null">
+        is_repair = #{isRepair,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierName != null">
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="coverDiscount != null">
+        cover_discount = #{coverDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="floorAdvert != null">
+        floor_advert = #{floorAdvert,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where catgory_id = #{catgoryId,jdbcType=VARCHAR}
+      and contract_customer_id = #{contractCustomerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shopping.model.EmCmGdCategory">
+    update em_cm_gd_category
+    set parent_category_id = #{parentCategoryId,jdbcType=VARCHAR},
+      category_tree_code = #{categoryTreeCode,jdbcType=VARCHAR},
+      category_code = #{categoryCode,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      category_pic = #{categoryPic,jdbcType=VARCHAR},
+      category_desc = #{categoryDesc,jdbcType=VARCHAR},
+      category_order = #{categoryOrder,jdbcType=DECIMAL},
+      is_show = #{isShow,jdbcType=DECIMAL},
+      is_inactive = #{isInactive,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=DECIMAL},
+      is_repair = #{isRepair,jdbcType=DECIMAL},
+      supplier_id = #{supplierId,jdbcType=VARCHAR},
+      supplier_name = #{supplierName,jdbcType=VARCHAR},
+      cover_discount = #{coverDiscount,jdbcType=DECIMAL},
+      floor_advert = #{floorAdvert,jdbcType=LONGVARCHAR}
+    where catgory_id = #{catgoryId,jdbcType=VARCHAR}
+      and contract_customer_id = #{contractCustomerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmCmGdCategory">
+    update em_cm_gd_category
+    set parent_category_id = #{parentCategoryId,jdbcType=VARCHAR},
+      category_tree_code = #{categoryTreeCode,jdbcType=VARCHAR},
+      category_code = #{categoryCode,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      category_pic = #{categoryPic,jdbcType=VARCHAR},
+      category_desc = #{categoryDesc,jdbcType=VARCHAR},
+      category_order = #{categoryOrder,jdbcType=DECIMAL},
+      is_show = #{isShow,jdbcType=DECIMAL},
+      is_inactive = #{isInactive,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=DECIMAL},
+      is_repair = #{isRepair,jdbcType=DECIMAL},
+      supplier_id = #{supplierId,jdbcType=VARCHAR},
+      supplier_name = #{supplierName,jdbcType=VARCHAR},
+      cover_discount = #{coverDiscount,jdbcType=DECIMAL}
+    where catgory_id = #{catgoryId,jdbcType=VARCHAR}
+      and contract_customer_id = #{contractCustomerId,jdbcType=VARCHAR}
+  </update>
+  <sql id="sql_condition">
+    <if test="catgoryId != null">
+      and catgory_id = #{catgoryId,jdbcType=VARCHAR}
+    </if>
+    <if test="contractCustomerId != null">
+      and contract_customer_id = #{contractCustomerId,jdbcType=VARCHAR}
+    </if>
+    <if test="parentCategoryId != null">
+      and parent_category_id = #{parentCategoryId,jdbcType=VARCHAR}
+    </if>
+    <if test="categoryTreeCode != null">
+      and category_tree_code = #{categoryTreeCode,jdbcType=VARCHAR}
+    </if>
+    <if test="categoryCode != null">
+      and category_code = #{categoryCode,jdbcType=VARCHAR}
+    </if>
+    <if test="categoryName != null">
+      and category_name = #{categoryName,jdbcType=VARCHAR}
+    </if>
+    <if test="categoryPic != null">
+      and category_pic = #{categoryPic,jdbcType=VARCHAR}
+    </if>
+    <if test="categoryDesc != null">
+      and category_desc = #{categoryDesc,jdbcType=VARCHAR}
+    </if>
+    <if test="categoryOrder != null">
+      and category_order = #{categoryOrder,jdbcType=DECIMAL}
+    </if>
+    <if test="isShow != null">
+      and is_show = #{isShow,jdbcType=DECIMAL}
+    </if>
+    <if test="isInactive != null">
+      and is_inactive = #{isInactive,jdbcType=DECIMAL}
+    </if>
+    <if test="discount != null">
+      and discount = #{discount,jdbcType=DECIMAL}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+    <if test="isRepair != null">
+      and is_repair = #{isRepair,jdbcType=DECIMAL}
+    </if>
+    <if test="supplierId != null">
+      and supplier_id = #{supplierId,jdbcType=VARCHAR}
+    </if>
+    <if test="supplierName != null">
+      and supplier_name = #{supplierName,jdbcType=VARCHAR}
+    </if>
+    <if test="coverDiscount != null">
+      and cover_discount = #{coverDiscount,jdbcType=DECIMAL}
+    </if>
+    <if test="floorAdvert != null">
+      and floor_advert = #{floorAdvert,jdbcType=LONGVARCHAR}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmCmGdCategory" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from em_cm_gd_category
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

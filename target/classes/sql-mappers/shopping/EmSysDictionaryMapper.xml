@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmSysDictionaryMapperExt">
+  <resultMap id="BaseResultMap" type="com.shopping.model.EmSysDictionary">
+    <id column="dict_key" jdbcType="DECIMAL" property="dictKey" />
+    <result column="dict_no" jdbcType="DECIMAL" property="dictNo" />
+    <result column="dict_code" jdbcType="VARCHAR" property="dictCode" />
+    <result column="dict_value" jdbcType="VARCHAR" property="dictValue" />
+    <result column="dict_name" jdbcType="VARCHAR" property="dictName" />
+    <result column="biz_category" jdbcType="VARCHAR" property="bizCategory" />
+    <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="version" jdbcType="DECIMAL" property="version" />
+    <result column="dict_order" jdbcType="DECIMAL" property="dictOrder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dict_key, dict_no, dict_code, dict_value, dict_name, biz_category, is_inactive, created_by, 
+    created_time, updated_by, updated_time, version, dict_order
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_sys_dictionary
+    where dict_key = #{dictKey,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from em_sys_dictionary
+    where dict_key = #{dictKey,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.shopping.model.EmSysDictionary">
+    insert into em_sys_dictionary (dict_key, dict_no, dict_code, 
+      dict_value, dict_name, biz_category, 
+      is_inactive, created_by, created_time, 
+      updated_by, updated_time, version, 
+      dict_order)
+    values (#{dictKey,jdbcType=DECIMAL}, #{dictNo,jdbcType=DECIMAL}, #{dictCode,jdbcType=VARCHAR}, 
+      #{dictValue,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, #{bizCategory,jdbcType=VARCHAR}, 
+      #{isInactive,jdbcType=DECIMAL}, #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, #{version,jdbcType=DECIMAL}, 
+      #{dictOrder,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopping.model.EmSysDictionary">
+    insert into em_sys_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dictKey != null">
+        dict_key,
+      </if>
+      <if test="dictNo != null">
+        dict_no,
+      </if>
+      <if test="dictCode != null">
+        dict_code,
+      </if>
+      <if test="dictValue != null">
+        dict_value,
+      </if>
+      <if test="dictName != null">
+        dict_name,
+      </if>
+      <if test="bizCategory != null">
+        biz_category,
+      </if>
+      <if test="isInactive != null">
+        is_inactive,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="dictOrder != null">
+        dict_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dictKey != null">
+        #{dictKey,jdbcType=DECIMAL},
+      </if>
+      <if test="dictNo != null">
+        #{dictNo,jdbcType=DECIMAL},
+      </if>
+      <if test="dictCode != null">
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null">
+        #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="bizCategory != null">
+        #{bizCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="isInactive != null">
+        #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="dictOrder != null">
+        #{dictOrder,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopping.model.EmSysDictionary">
+    update em_sys_dictionary
+    <set>
+      <if test="dictNo != null">
+        dict_no = #{dictNo,jdbcType=DECIMAL},
+      </if>
+      <if test="dictCode != null">
+        dict_code = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null">
+        dict_value = #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="bizCategory != null">
+        biz_category = #{bizCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="isInactive != null">
+        is_inactive = #{isInactive,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="dictOrder != null">
+        dict_order = #{dictOrder,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where dict_key = #{dictKey,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopping.model.EmSysDictionary">
+    update em_sys_dictionary
+    set dict_no = #{dictNo,jdbcType=DECIMAL},
+      dict_code = #{dictCode,jdbcType=VARCHAR},
+      dict_value = #{dictValue,jdbcType=VARCHAR},
+      dict_name = #{dictName,jdbcType=VARCHAR},
+      biz_category = #{bizCategory,jdbcType=VARCHAR},
+      is_inactive = #{isInactive,jdbcType=DECIMAL},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=DECIMAL},
+      dict_order = #{dictOrder,jdbcType=DECIMAL}
+    where dict_key = #{dictKey,jdbcType=DECIMAL}
+  </update>
+  <sql id="sql_condition">
+    <if test="dictKey != null">
+      and dict_key = #{dictKey,jdbcType=DECIMAL}
+    </if>
+    <if test="dictNo != null">
+      and dict_no = #{dictNo,jdbcType=DECIMAL}
+    </if>
+    <if test="dictCode != null">
+      and dict_code = #{dictCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dictValue != null">
+      and dict_value = #{dictValue,jdbcType=VARCHAR}
+    </if>
+    <if test="dictName != null">
+      and dict_name = #{dictName,jdbcType=VARCHAR}
+    </if>
+    <if test="bizCategory != null">
+      and biz_category = #{bizCategory,jdbcType=VARCHAR}
+    </if>
+    <if test="isInactive != null">
+      and is_inactive = #{isInactive,jdbcType=DECIMAL}
+    </if>
+    <if test="createdBy != null">
+      and created_by = #{createdBy,jdbcType=VARCHAR}
+    </if>
+    <if test="createdTime != null">
+      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatedBy != null">
+      and updated_by = #{updatedBy,jdbcType=VARCHAR}
+    </if>
+    <if test="updatedTime != null">
+      and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="version != null">
+      and version = #{version,jdbcType=DECIMAL}
+    </if>
+    <if test="dictOrder != null">
+      and dict_order = #{dictOrder,jdbcType=DECIMAL}
+    </if>
+  </sql>
+  <select id="selectList" parameterType="com.shopping.model.EmSysDictionary" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from em_sys_dictionary
+    <trim prefix="WHERE" prefixOverrides="AND">
+      <include refid="sql_condition" />
+    </trim>
+  </select>
+</mapper>

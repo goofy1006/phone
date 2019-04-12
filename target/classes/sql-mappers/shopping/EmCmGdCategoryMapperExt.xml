@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.EmCmGdCategoryMapperExt">
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+    <resultMap id="CategoryResultMap" type="com.shopping.model.jsonbean.EmCmGdCategroyJsonBean">
+        <id column="catgory_id" jdbcType="VARCHAR" property="catgoryId" />
+        <id column="contract_customer_id" jdbcType="VARCHAR" property="contractCustomerId" />
+        <result column="parent_category_id" jdbcType="VARCHAR" property="parentCategoryId" />
+        <result column="category_tree_code" jdbcType="VARCHAR" property="categoryTreeCode" />
+        <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+        <result column="category_pic" jdbcType="VARCHAR" property="categoryPic" />
+        <result column="category_desc" jdbcType="VARCHAR" property="categoryDesc" />
+        <result column="category_order" jdbcType="DECIMAL" property="categoryOrder" />
+        <result column="is_show" jdbcType="DECIMAL" property="isShow" />
+        <result column="is_inactive" jdbcType="DECIMAL" property="isInactive" />
+        <result column="discount" jdbcType="DECIMAL" property="discount" />
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+        <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+        <result column="version" jdbcType="DECIMAL" property="version" />
+        <result column="is_repair" jdbcType="DECIMAL" property="isRepair" />
+        <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+        <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+        <result column="cover_discount" jdbcType="DECIMAL" property="coverDiscount" />
+        <result column="categoryPic" jdbcType="VARCHAR" property="categoryPic" />
+    </resultMap>
+
+    <select id="selectGoodsPic" parameterType="java.lang.String" resultType="java.lang.String">
+            select b.goods_pic as categoryPic from em_cm_contract_goods a
+            left join em_gd_goods b on a.goods_id = b.goods_id
+            where a.catgory_id = #{categoryId,jdbcType = VARCHAR};
+    </select>
+
+    <select id="selectListByParentId" parameterType="com.shopping.model.EmCmGdCategory" resultMap="CategoryResultMap">
+        select
+        catgory_id, contract_customer_id, parent_category_id, category_tree_code, category_code,
+        category_name, category_pic, category_desc, category_order, is_show, is_inactive,
+        discount, created_time, created_by, updated_time, updated_by, version, is_repair,
+        supplier_id, supplier_name, cover_discount
+        from em_cm_gd_category where 1=1
+        and contract_customer_id = 'pingtai1'
+        <if test="catgoryId != null">
+            and catgory_id = #{catgoryId,jdbcType=VARCHAR}
+        </if>
+        <if test="contractCustomerId != null">
+            and contract_customer_id = #{contractCustomerId,jdbcType=VARCHAR}
+        </if>
+        <if test="parentCategoryId != null">
+            and parent_category_id = #{parentCategoryId,jdbcType=VARCHAR}
+        </if>
+        <if test="categoryTreeCode != null">
+            and category_tree_code = #{categoryTreeCode,jdbcType=VARCHAR}
+        </if>
+        <if test="categoryCode != null">
+            and category_code = #{categoryCode,jdbcType=VARCHAR}
+        </if>
+        <if test="categoryName != null">
+            and category_name = #{categoryName,jdbcType=VARCHAR}
+        </if>
+        <if test="categoryPic != null">
+            and category_pic = #{categoryPic,jdbcType=VARCHAR}
+        </if>
+        <if test="categoryDesc != null">
+            and category_desc = #{categoryDesc,jdbcType=VARCHAR}
+        </if>
+        <if test="categoryOrder != null">
+            and category_order = #{categoryOrder,jdbcType=DECIMAL}
+        </if>
+        <if test="isShow != null">
+            and is_show = #{isShow,jdbcType=DECIMAL}
+        </if>
+        <if test="isInactive != null">
+            and is_inactive = #{isInactive,jdbcType=DECIMAL}
+        </if>
+        <if test="discount != null">
+            and discount = #{discount,jdbcType=DECIMAL}
+        </if>
+        <if test="createdTime != null">
+            and created_time = #{createdTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="createdBy != null">
+            and created_by = #{createdBy,jdbcType=VARCHAR}
+        </if>
+        <if test="updatedTime != null">
+            and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updatedBy != null">
+            and updated_by = #{updatedBy,jdbcType=VARCHAR}
+        </if>
+        <if test="version != null">
+            and version = #{version,jdbcType=DECIMAL}
+        </if>
+        <if test="isRepair != null">
+            and is_repair = #{isRepair,jdbcType=DECIMAL}
+        </if>
+        <if test="supplierId != null">
+            and supplier_id = #{supplierId,jdbcType=VARCHAR}
+        </if>
+        <if test="supplierName != null">
+            and supplier_name = #{supplierName,jdbcType=VARCHAR}
+        </if>
+        <if test="coverDiscount != null">
+            and cover_discount = #{coverDiscount,jdbcType=DECIMAL}
+        </if>
+        <if test="floorAdvert != null">
+            and floor_advert = #{floorAdvert,jdbcType=LONGVARCHAR}
+        </if>
+        ORDER BY  category_order
+    </select>
+
+    <select id="selectListByContractCustomerId" resultMap="BaseResultMap">
+        SELECT * FROM em_cm_gd_category WHERE LENGTH(category_tree_code) = 9 AND contract_customer_id = 'pingtai1'
+    </select>
+</mapper>

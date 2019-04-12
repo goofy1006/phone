@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.dao.PhoneEmPpNoticeMapperExt">
+  <!-- 扩展自动生成或自定义的SQl语句写在此文件中 -->
+    <select id="selectListNotice" parameterType="com.shopping.model.PhoneEmPpNotice" resultType="com.shopping.model.PhoneEmPpNotice">
+select notice_id, notice_title, notice_content, notice_order, is_inactive, created_time,
+    created_by, updated_time, update_by, version
+    from phone_em_pp_notice
+    where 1=1
+        <if test="noticeId != null">
+            and notice_id = #{noticeId,jdbcType=VARCHAR}
+        </if>
+        <if test="noticeTitle != null">
+            and notice_title = #{noticeTitle,jdbcType=VARCHAR}
+        </if>
+        <if test="noticeContent != null">
+            and notice_content = #{noticeContent,jdbcType=VARCHAR}
+        </if>
+        <if test="noticeOrder != null">
+            and notice_order = #{noticeOrder,jdbcType=INTEGER}
+        </if>
+        <if test="isInactive != null">
+            and is_inactive = #{isInactive,jdbcType=DECIMAL}
+        </if>
+        <if test="createdTime != null">
+            and created_time = #{createdTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="createdBy != null">
+            and created_by = #{createdBy,jdbcType=VARCHAR}
+        </if>
+        <if test="updatedTime != null">
+            and updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateBy != null">
+            and update_by = #{updateBy,jdbcType=VARCHAR}
+        </if>
+        <if test="version != null">
+            and version = #{version,jdbcType=DECIMAL}
+        </if>
+
+    </select>
+</mapper>
